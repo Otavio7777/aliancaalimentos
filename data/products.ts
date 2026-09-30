@@ -2,22 +2,33 @@
  * Catálogo Aliança Alimentos — fonte de verdade dos SKUs.
  * Gramaturas e unidades por caixa conforme o catálogo comercial.
  * Cores de tema são aproximações (ver docs/pendencias.md — amostragem do PDF pendente).
+ * `unidadesPorCaixa` e `categoria` ficam `null` quando o dado ainda não foi informado —
+ * a UI mostra "Consulte-nos" e os filtros tratam o canal como varejo.
  */
 
 import { imagensProdutos } from "./product-images";
+import { imagensLotes } from "./product-images-lotes";
 
 export type Categoria = "varejo" | "atacado-foodservice";
 
-export type LinhaSlug = "batata-palha" | "food-service" | "krisps" | "checkmate";
+export type LinhaSlug = "batata-palha" | "food-service" | "krisps" | "checkmate" | "batata-chips-lisa";
 
 /** Formato visual usado pelo placeholder de embalagem quando não há foto. */
-export type Formato = "pacote" | "pouch" | "familia" | "sache" | "granel" | "ondulada" | "trigo";
+export type Formato = "pacote" | "pouch" | "familia" | "sache" | "granel" | "ondulada" | "trigo" | "chips";
 
 export interface Cor {
   /** cor de fundo / tema */
   bg: string;
   /** cor de texto com contraste AA sobre `bg` */
   ink: string;
+}
+
+/** Cor de sabor sobre fundo escuro (linha Batata Chips Lisa). */
+export interface CorSabor {
+  /** cor impressa na embalagem (amostragem de pixel) — só para superfícies grandes/decorativas */
+  base: string;
+  /** tom ajustado para TEXTO sobre `cores.preto.bg` (contraste AA ≥ 4,5:1) e fundo de botão com `cores.preto.bg` como texto */
+  texto: string;
 }
 
 export interface Produto {
@@ -30,9 +41,13 @@ export interface Produto {
   gramatura: string;
   /** gramatura em gramas, usada para filtros e ordenação */
   gramas: number;
-  unidadesPorCaixa: number;
-  categoria: Categoria;
+  /** `null` = não informado ("Consulte-nos" na UI) */
+  unidadesPorCaixa: number | null;
+  /** `null` = canal não informado; filtros tratam como varejo (ver `canalDe`) */
+  categoria: Categoria | null;
   corTema: Cor;
+  /** cor do sabor sobre fundo escuro (usada em botões, detalhes e no "lisa") */
+  corSabor?: CorSabor;
   formato: Formato;
   /** caminho em /public/products; `null` enquanto o recorte do catálogo estiver pendente */
   imagem: string | null;
@@ -51,6 +66,8 @@ export interface Linha {
   /** cor de acento (texto grande) com contraste AA sobre `cor.bg` */
   acento: string;
   fonteTitulo: "serif" | "condensed";
+  /** selo impresso na embalagem (ex.: "Premium") */
+  selo?: string;
 }
 
 /** Tokens de cor — espelhados em app/globals.css */
@@ -69,7 +86,24 @@ export const cores = {
   cebolaSalsa: { bg: "#5E6B2A", ink: "#FFFFFF" },
   costelinhaLimao: { bg: "#16706B", ink: "#FFFFFF" },
   costelinhaBarbecue: { bg: "#7A2E1A", ink: "#FFFFFF" },
+  /** fundo da linha Batata Chips Lisa (embalagem preta) — [CONFIRMAR após amostragem] */
+  preto: { bg: "#141414", ink: "#FFFFFF" },
+  /** dourado da tipografia "BATATA CHIPS" como texto sobre `preto` (contraste 8,8:1) */
+  douradoChips: { bg: "#D4AF5A", ink: "#141414" },
 } satisfies Record<string, Cor>;
+
+/**
+ * Cores de sabor da Batata Chips Lisa.
+ * [CONFIRMAR após amostragem] `base` foi amostrada das cópias recebidas por mensagem
+ * (WebP recomprimido), não dos originais — refazer com `npm run images:lote` no lote 01.
+ * `texto` é `base` clareada até contraste ≥ 4,6:1 sobre `cores.preto.bg`.
+ */
+export const saboresChipsLisa = {
+  vermelho: { base: "#F21815", texto: "#F32F2C" },
+  verde: { base: "#057225", texto: "#3C9155" },
+  laranja: { base: "#C43801", texto: "#D06034" },
+  azul: { base: "#015CBF", texto: "#3E83CE" },
+} satisfies Record<string, CorSabor>;
 
 export const linhas: Linha[] = [
   {
@@ -113,12 +147,27 @@ export const linhas: Linha[] = [
     acento: "#F2C230",
     fonteTitulo: "condensed",
   },
+  {
+    slug: "batata-chips-lisa",
+    nome: "Batata Chips Lisa",
+    titulo: "Chips Lisa",
+    chamada: "Lâmina fina, crocância premium.",
+    descricao: "Batata chips lisa Premium nos sabores Original, Creme de Cebola, Frango Grelhado e Costelinha com Barbecue, em 45g e 150g para compartilhar.",
+    cor: cores.preto,
+    acento: cores.douradoChips.bg,
+    fonteTitulo: "condensed",
+    selo: "Premium",
+  },
 ];
 
-type Base = Omit<Produto, "id" | "imagem" | "seloAltoGorduraSaturada"> & { id?: string };
+type Base = Omit<Produto, "id" | "imagem" | "seloAltoGorduraSaturada"> & { id?: string; seloAltoGorduraSaturada?: boolean };
 
 function p(item: Base & { id: string }): Produto {
-  return { ...item, imagem: imagensProdutos[item.id] ?? null, seloAltoGorduraSaturada: true };
+  return {
+    ...item,
+    imagem: imagensLotes[item.id] ?? imagensProdutos[item.id] ?? null,
+    seloAltoGorduraSaturada: item.seloAltoGorduraSaturada ?? true,
+  };
 }
 
 const slug = (s: string) =>
@@ -192,8 +241,38 @@ const checkmatePetisco: Produto[] = (
   ] as const
 ).flatMap(([gramas, cx]) =>
   saboresPetisco.map(([sabor, cor]) =>
-    p({ id: `checkmate-petisco-${slug(sabor)}-${gramas}g`, linha: "checkmate", grupo: `Checkmate Petisco ${gramas}g`, nome: "Checkmate Petisco", sabor, gramatura: `${gramas}g`, gramas, unidadesPorCaixa: cx, categoria: "varejo", corTema: cor, formato: "trigo" }),
+    // embalagens Petisco (Bacon 50g, Costelinha/Limão 100g) não trazem o selo frontal — ver docs/pendencias.md
+    p({ id: `checkmate-petisco-${slug(sabor)}-${gramas}g`, linha: "checkmate", grupo: `Checkmate Petisco ${gramas}g`, nome: "Checkmate Petisco", sabor, gramatura: `${gramas}g`, gramas, unidadesPorCaixa: cx, categoria: "varejo", corTema: cor, formato: "trigo", seloAltoGorduraSaturada: false }),
   ),
+);
+
+/* ------------------------- Batata Chips Lisa -------------------------- */
+
+// un/cx e canal ainda não informados → null (docs/pendencias.md)
+const chipsLisa: Produto[] = (
+  [
+    ["Original", "Clássica Natural", 45, saboresChipsLisa.azul],
+    ["Creme de Cebola", null, 45, saboresChipsLisa.verde],
+    ["Frango Grelhado", null, 45, saboresChipsLisa.laranja],
+    ["Original", "Clássica Natural", 150, saboresChipsLisa.azul],
+    ["Creme de Cebola", null, 150, saboresChipsLisa.verde],
+    ["Costelinha com Barbecue", null, 150, saboresChipsLisa.vermelho],
+  ] as const
+).map(([sabor, complemento, gramas, corSabor]) =>
+  p({
+    id: `chips-lisa-${slug(sabor)}-${gramas}g`,
+    linha: "batata-chips-lisa",
+    grupo: gramas === 150 ? "Para compartilhar 150g" : "Chips Lisa 45g",
+    nome: "Batata Chips Lisa",
+    sabor: complemento ? `${sabor} (${complemento})` : sabor,
+    gramatura: `${gramas}g`,
+    gramas,
+    unidadesPorCaixa: null,
+    categoria: null,
+    corTema: cores.preto,
+    corSabor,
+    formato: "chips",
+  }),
 );
 
 export const produtos: Produto[] = [
@@ -202,7 +281,14 @@ export const produtos: Produto[] = [
   ...krisps,
   ...checkmateSkin,
   ...checkmatePetisco,
+  ...chipsLisa,
 ];
+
+/** Canal usado em filtros: sem dado informado, trata como varejo. */
+export const canalDe = (p: Produto): Categoria => p.categoria ?? "varejo";
+
+/** Texto de unidades por caixa para a UI. */
+export const caixaDe = (p: Produto) => (p.unidadesPorCaixa == null ? "Consulte-nos" : `c/ ${p.unidadesPorCaixa} un`);
 
 export const categorias: Record<Categoria, string> = {
   varejo: "Varejo",
