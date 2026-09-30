@@ -4,6 +4,8 @@
  * Cores de tema são aproximações (ver docs/pendencias.md — amostragem do PDF pendente).
  */
 
+import { imagensProdutos } from "./product-images";
+
 export type Categoria = "varejo" | "atacado-foodservice";
 
 export type LinhaSlug = "batata-palha" | "food-service" | "krisps" | "checkmate";
@@ -116,7 +118,7 @@ export const linhas: Linha[] = [
 type Base = Omit<Produto, "id" | "imagem" | "seloAltoGorduraSaturada"> & { id?: string };
 
 function p(item: Base & { id: string }): Produto {
-  return { ...item, imagem: null, seloAltoGorduraSaturada: true };
+  return { ...item, imagem: imagensProdutos[item.id] ?? null, seloAltoGorduraSaturada: true };
 }
 
 const slug = (s: string) =>

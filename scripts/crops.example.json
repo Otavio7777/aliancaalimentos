@@ -1,0 +1,13 @@
+{
+  "_comentario": "Copie para scripts/crops.json e ajuste. page = página do PDF (1-based); box = [x0, y0, x1, y1] em fração da página (0–1). Deixe margem para NÃO cortar o selo 'ALTO EM GORDURA SATURADA'.",
+  "dpi": 300,
+  "remover_fundo": false,
+  "produtos": {
+    "bp-tradicional-80g": { "page": 1, "box": [0.05, 0.10, 0.30, 0.55] },
+    "bp-extrafina-80g": { "page": 1, "box": [0.32, 0.10, 0.57, 0.55] }
+  },
+  "cores": {
+    "_comentario": "Pontos para amostrar a cor sólida de cada embalagem: page + [x, y] em fração.",
+    "vermelho": { "page": 1, "point": [0.1, 0.2] }
+  }
+}
