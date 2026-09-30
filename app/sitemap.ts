@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { linhas } from "@/data/products";
+import { linhas, produtosDaLinha } from "@/data/products";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+      images: produtosDaLinha(l.slug).flatMap((p) => (p.imagem ? [`${site.url}${p.imagem}`] : [])),
     })),
   ];
 }

@@ -14,7 +14,7 @@ function siteUrl() {
 export const site = {
   nome: "Aliança Alimentos",
   descricao:
-    "Fabricante de batata palha e snacks. Batata Palha Aliança, Batata Ondulada Krisp's e Salgadinho de Trigo Checkmate para varejo, atacado e food service.",
+    "Fabricante de batata palha e snacks. Batata Palha Aliança, Batata Chips Lisa, Batata Ondulada Krisp's e Salgadinho de Trigo Checkmate para varejo, atacado e food service.",
   url: siteUrl(),
   razaoSocial: `${PREENCHER} razão social`,
   cnpj: `${PREENCHER} CNPJ`,

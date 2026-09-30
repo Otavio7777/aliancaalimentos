@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { categorias, gramaturas, linhas, produtos, type Categoria, type LinhaSlug } from "@/data/products";
+import { canalDe, categorias, gramaturas, linhas, produtos, type Categoria, type LinhaSlug } from "@/data/products";
 import { ProductCard } from "./ProductCard";
 
 type Filtros = { linha: LinhaSlug | ""; gramas: string; canal: Categoria | "" };
@@ -36,7 +36,7 @@ export function ProductFilter() {
         (p) =>
           (!f.linha || p.linha === f.linha) &&
           (!f.gramas || String(p.gramas) === f.gramas) &&
-          (!f.canal || p.categoria === f.canal),
+          (!f.canal || canalDe(p) === f.canal),
       ),
     [f],
   );

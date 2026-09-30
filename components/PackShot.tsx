@@ -18,7 +18,7 @@ export function PackShot({
   priority?: boolean;
   sizes?: string;
 }) {
-  const alt = `Embalagem ${produto.nome} ${produto.sabor} ${produto.gramatura}${
+  const alt = `Embalagem ${produto.nome} ${produto.formato === "chips" ? "sabor " : ""}${produto.sabor} ${produto.gramatura}${
     produto.seloAltoGorduraSaturada ? ", com selo frontal Alto em gordura saturada" : ""
   }`;
 
@@ -30,7 +30,100 @@ export function PackShot({
     );
   }
 
+  if (produto.formato === "chips") return <ChipsIllustration produto={produto} alt={alt} className={className} />;
   return <PackIllustration produto={produto} alt={alt} className={className} />;
+}
+
+/** Placeholder da Batata Chips Lisa: embalagem preta, tipografia dourada e "lisa" na cor do sabor. */
+function ChipsIllustration({ produto, alt, className }: { produto: Produto; alt: string; className: string }) {
+  const uid = useId().replace(/:/g, "");
+  const sabor = produto.corSabor?.texto ?? "#D4AF5A";
+  const ouro = "#D4AF5A";
+  const [saborNome, complemento] = produto.sabor.replace(")", "").split(" (");
+  const serrilha = (y: number) => {
+    let d = `M26 ${y}`;
+    for (let x = 26; x < 174; x += 8) d += " l4 -4 l4 4";
+    return d;
+  };
+
+  return (
+    <svg viewBox="0 0 200 290" className={`h-auto w-full drop-shadow-xl ${className}`} role="img" aria-label={alt}>
+      <title>{alt}</title>
+      <defs>
+        <linearGradient id={`ouro-${uid}`} x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#E9CC7C" />
+          <stop offset="1" stopColor="#A9832F" />
+        </linearGradient>
+        <radialGradient id={`luz-${uid}`} cx=".35" cy=".3" r=".8">
+          <stop offset="0" stopColor="#fff" stopOpacity=".12" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <ellipse cx="100" cy="274" rx="78" ry="7" fill="rgba(0,0,0,.25)" />
+      <path d="M22 24 L178 24 Q186 145 178 262 L22 262 Q14 145 22 24 Z" fill="#161616" stroke="#3A3222" strokeWidth="1.2" />
+      <path d="M22 24 L178 24 Q186 145 178 262 L22 262 Q14 145 22 24 Z" fill={`url(#luz-${uid})`} />
+      <path d={serrilha(34)} stroke="rgba(255,255,255,.12)" strokeWidth="1.5" fill="none" />
+      <path d={serrilha(254)} stroke="rgba(255,255,255,.12)" strokeWidth="1.5" fill="none" />
+
+      {/* oval da marca */}
+      <g transform="translate(96 66)">
+        <ellipse rx="34" ry="16" fill="#C9A24B" />
+        <ellipse rx="31" ry="13.5" fill="#C8102E" />
+        <text y="5" textAnchor="middle" fontFamily="var(--font-pacifico), cursive" fontSize="13" fill="#fff">
+          Aliança
+        </text>
+      </g>
+
+      <g fontFamily="var(--font-anton), Impact, sans-serif" fill={`url(#ouro-${uid})`} textAnchor="middle">
+        <text x="92" y="112" fontSize="30" letterSpacing="1">BATATA</text>
+        <text x="80" y="142" fontSize="30" letterSpacing="1">CHIPS</text>
+      </g>
+      <text x="150" y="144" textAnchor="middle" fontFamily="var(--font-pacifico), cursive" fontSize="22" fill={sabor} transform="rotate(-8 150 144)">
+        lisa
+      </text>
+
+      {/* chips */}
+      <g transform="translate(104 180)">
+        {[
+          [-26, 4, -14],
+          [0, -4, 8],
+          [24, 6, 20],
+          [-10, 14, 30],
+          [12, 16, -24],
+        ].map(([x, y, r], i) => (
+          <ellipse key={i} cx={x} cy={y} rx="20" ry="12" fill={i % 2 ? "#F0CB6A" : "#E3B24E"} stroke="#C99536" strokeWidth=".8" transform={`rotate(${r} ${x} ${y})`} />
+        ))}
+      </g>
+
+      <text x="100" y="212" textAnchor="middle" fontFamily="var(--font-dm-sans), sans-serif" fontWeight="700" fontSize="6" letterSpacing="2" fill={ouro}>
+        · PREMIUM ·
+      </text>
+      <text x="100" y="226" textAnchor="middle" fontFamily="var(--font-dm-sans), sans-serif" fontWeight="800" fontSize={saborNome.length > 16 ? 9 : 12} fill={sabor}>
+        {saborNome.toUpperCase()}
+      </text>
+      {complemento && (
+        <text x="100" y="237" textAnchor="middle" fontFamily="var(--font-dm-sans), sans-serif" fontSize="8" fill={sabor}>
+          {complemento.toUpperCase()}
+        </text>
+      )}
+      <text x="168" y="250" textAnchor="end" fontFamily="var(--font-dm-sans), sans-serif" fontWeight="800" fontSize="12" fill={sabor}>
+        {produto.gramatura}
+      </text>
+
+      {/* selo frontal de alerta nutricional — sempre visível */}
+      {produto.seloAltoGorduraSaturada && (
+        <g transform="translate(126 36)">
+          <rect width="46" height="32" rx="2.5" fill="#fff" stroke="#000" strokeWidth="1.2" />
+          <circle cx="8" cy="8" r="3.6" fill="none" stroke="#000" strokeWidth="1.4" />
+          <path d="M10.6 10.6 L13.4 13.4" stroke="#000" strokeWidth="1.6" strokeLinecap="round" />
+          <text x="16" y="10.5" fontFamily="var(--font-dm-sans), Arial, sans-serif" fontWeight="800" fontSize="6.4" fill="#000">ALTO EM</text>
+          <rect x="3" y="15" width="40" height="14" rx="1.5" fill="#000" />
+          <text x="23" y="21" textAnchor="middle" fontFamily="var(--font-dm-sans), Arial, sans-serif" fontWeight="800" fontSize="5.2" fill="#fff">GORDURA</text>
+          <text x="23" y="27" textAnchor="middle" fontFamily="var(--font-dm-sans), Arial, sans-serif" fontWeight="800" fontSize="5.2" fill="#fff">SATURADA</text>
+        </g>
+      )}
+    </svg>
+  );
 }
 
 function PackIllustration({ produto, alt, className }: { produto: Produto; alt: string; className: string }) {

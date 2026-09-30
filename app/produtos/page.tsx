@@ -7,7 +7,7 @@ import { linhas, produtos } from "@/data/products";
 export const metadata: Metadata = {
   title: "Produtos",
   description:
-    "Catálogo Aliança Alimentos: batata palha Tradicional, Extrafina, Temperada e Zero Sódio, batata ondulada Krisp's e salgadinho de trigo Checkmate. Gramaturas e unidades por caixa.",
+    "Catálogo Aliança Alimentos: batata palha Tradicional, Extrafina, Temperada e Zero Sódio, batata ondulada Krisp's, salgadinho de trigo Checkmate e Batata Chips Lisa Premium. Gramaturas e unidades por caixa.",
   alternates: { canonical: "/produtos" },
 };
 

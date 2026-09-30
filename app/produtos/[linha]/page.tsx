@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ChipsLisaHero } from "@/components/ChipsLisaHero";
 import { JsonLd } from "@/components/JsonLd";
 import { PackShot } from "@/components/PackShot";
 import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink, Container, Eyebrow } from "@/components/ui";
-import { agruparPorGrupo, categorias, getLinha, linhas, produtosDaLinha } from "@/data/products";
+import { agruparPorGrupo, categorias, getLinha, linhas, produtosDaLinha, type Produto } from "@/data/products";
 import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ linha: string }> };
+
+const marca = (slug: string) => (slug === "krisps" ? "Krisp's" : slug === "checkmate" ? "Checkmate" : "Aliança");
+const canal = (p: Produto) => (p.categoria ? categorias[p.categoria] : "Consulte-nos");
+const caixaGrupo = (p: Produto) =>
+  p.unidadesPorCaixa == null ? "un/cx: consulte-nos" : `caixa com ${p.unidadesPorCaixa} unidades`;
 
 export function generateStaticParams() {
   return linhas.map((l) => ({ linha: l.slug }));
@@ -48,8 +54,8 @@ export default async function LinhaPage({ params }: Props) {
         "@type": "Product",
         sku: p.id,
         name: `${p.nome} ${p.sabor} ${p.gramatura}`,
-        category: categorias[p.categoria],
-        brand: { "@type": "Brand", name: linha.slug === "krisps" ? "Krisp's" : linha.slug === "checkmate" ? "Checkmate" : "Aliança" },
+        ...(p.categoria ? { category: categorias[p.categoria] } : {}),
+        brand: { "@type": "Brand", name: marca(linha.slug) },
         manufacturer: { "@type": "Organization", name: site.nome },
         weight: { "@type": "QuantitativeValue", value: p.gramas, unitCode: "GRM" },
         url: `${site.url}/produtos/${linha.slug}#${p.id}`,
@@ -60,65 +66,69 @@ export default async function LinhaPage({ params }: Props) {
 
   return (
     <div style={{ ["--theme" as string]: linha.cor.bg, ["--theme-ink" as string]: linha.cor.ink }}>
-      <section
-        data-theme={linha.cor.bg}
-        data-theme-ink={linha.cor.ink}
-        className="juta relative isolate overflow-hidden"
-        style={{ backgroundColor: linha.cor.bg, color: linha.cor.ink }}
-        aria-labelledby="linha-title"
-      >
-        {linha.slug === "checkmate" && (
-          <span
-            aria-hidden="true"
-            className="text-vertical pointer-events-none absolute right-0 top-0 -z-10 h-full select-none font-condensed text-[5rem] leading-none opacity-10 sm:text-[7.5rem]"
-          >
-            CHECKMATE
-          </span>
-        )}
-        <Container className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr]">
-          <div>
-            <nav aria-label="Trilha" className="text-sm opacity-85">
-              <Link href="/produtos" className="underline-offset-4 hover:underline">
-                Produtos
-              </Link>{" "}
-              / <span aria-current="page">{linha.titulo}</span>
-            </nav>
-            <h1 id="linha-title" className={`mt-4 text-5xl leading-none sm:text-7xl ${titleFont}`}>
-              {linha.nome}
-            </h1>
-            <p className="mt-5 font-script text-2xl sm:text-3xl" style={{ color: linha.acento }}>
-              {linha.chamada}
-            </p>
-            <p className="mt-4 max-w-xl text-lg opacity-95">{linha.descricao}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href={`/revenda?interesse=${linha.slug}#formulario`}
-                className="inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-bold transition hover:brightness-95"
-                style={{ backgroundColor: linha.cor.ink, color: linha.cor.bg }}
-              >
-                Solicitar cotação
-              </Link>
-              <a
-                href="#skus"
-                className="inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-bold ring-2 ring-inset ring-current transition hover:bg-black/10"
-              >
-                Ver {itens.length} itens
-              </a>
-            </div>
-          </div>
-          <div className="relative mx-auto flex w-full max-w-md items-end justify-center">
-            {heroItens.map((p, i) => (
-              <div
-                key={p.id}
-                className={i === 1 ? "z-10 w-[44%]" : "w-[34%] opacity-95"}
-                style={{ transform: `rotate(${(i - 1) * 8}deg) translateY(${i === 1 ? 0 : 16}px)` }}
-              >
-                <PackShot produto={p} priority={i === 1} sizes="25vw" />
+      {linha.slug === "batata-chips-lisa" ? (
+        <ChipsLisaHero linha={linha} itens={itens} />
+      ) : (
+        <section
+          data-theme={linha.cor.bg}
+          data-theme-ink={linha.cor.ink}
+          className="juta relative isolate overflow-hidden"
+          style={{ backgroundColor: linha.cor.bg, color: linha.cor.ink }}
+          aria-labelledby="linha-title"
+        >
+          {linha.slug === "checkmate" && (
+            <span
+              aria-hidden="true"
+              className="text-vertical pointer-events-none absolute right-0 top-0 -z-10 h-full select-none font-condensed text-[5rem] leading-none opacity-10 sm:text-[7.5rem]"
+            >
+              CHECKMATE
+            </span>
+          )}
+          <Container className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr]">
+            <div>
+              <nav aria-label="Trilha" className="text-sm opacity-85">
+                <Link href="/produtos" className="underline-offset-4 hover:underline">
+                  Produtos
+                </Link>{" "}
+                / <span aria-current="page">{linha.titulo}</span>
+              </nav>
+              <h1 id="linha-title" className={`mt-4 text-5xl leading-none sm:text-7xl ${titleFont}`}>
+                {linha.nome}
+              </h1>
+              <p className="mt-5 font-script text-2xl sm:text-3xl" style={{ color: linha.acento }}>
+                {linha.chamada}
+              </p>
+              <p className="mt-4 max-w-xl text-lg opacity-95">{linha.descricao}</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={`/revenda?interesse=${linha.slug}#formulario`}
+                  className="inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-bold transition hover:brightness-95"
+                  style={{ backgroundColor: linha.cor.ink, color: linha.cor.bg }}
+                >
+                  Solicitar cotação
+                </Link>
+                <a
+                  href="#skus"
+                  className="inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-bold ring-2 ring-inset ring-current transition hover:bg-black/10"
+                >
+                  Ver {itens.length} itens
+                </a>
               </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+            </div>
+            <div className="relative mx-auto flex w-full max-w-md items-end justify-center">
+              {heroItens.map((p, i) => (
+                <div
+                  key={p.id}
+                  className={i === 1 ? "z-10 w-[44%]" : "w-[34%] opacity-95"}
+                  style={{ transform: `rotate(${(i - 1) * 8}deg) translateY(${i === 1 ? 0 : 16}px)` }}
+                >
+                  <PackShot produto={p} priority={i === 1} sizes="25vw" />
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section id="skus" aria-labelledby="skus-title" className="bg-offwhite py-14 sm:py-20">
         <Container>
@@ -132,7 +142,7 @@ export default async function LinhaPage({ params }: Props) {
               <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-4 pb-3" style={{ borderColor: linha.cor.bg }}>
                 <h3 className="font-condensed text-3xl uppercase">{grupo}</h3>
                 <p className="text-sm font-semibold text-ink/75">
-                  {lista[0].gramatura} · caixa com {lista[0].unidadesPorCaixa} unidades · {categorias[lista[0].categoria]}
+                  {lista[0].gramatura} · {caixaGrupo(lista[0])} · {lista[0].categoria ? categorias[lista[0].categoria] : "canal: consulte-nos"}
                 </p>
               </div>
               <ul className="mt-6 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
@@ -167,8 +177,8 @@ export default async function LinhaPage({ params }: Props) {
                     <th scope="row" className="px-4 py-3 font-semibold">{p.nome}</th>
                     <td className="px-4 py-3">{p.sabor}</td>
                     <td className="px-4 py-3">{p.gramatura}</td>
-                    <td className="px-4 py-3">{p.unidadesPorCaixa}</td>
-                    <td className="px-4 py-3">{categorias[p.categoria]}</td>
+                    <td className="px-4 py-3">{p.unidadesPorCaixa ?? "Consulte-nos"}</td>
+                    <td className="px-4 py-3">{canal(p)}</td>
                   </tr>
                 ))}
               </tbody>

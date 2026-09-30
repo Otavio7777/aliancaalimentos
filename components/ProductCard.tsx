@@ -1,4 +1,4 @@
-import type { Produto } from "@/data/products";
+import { caixaDe, type Produto } from "@/data/products";
 import { PackShot } from "./PackShot";
 
 export function ProductCard({ produto, headingLevel = "h3" }: { produto: Produto; headingLevel?: "h2" | "h3" | "h4" }) {
@@ -10,6 +10,9 @@ export function ProductCard({ produto, headingLevel = "h3" }: { produto: Produto
       <div className="relative px-6 pb-2 pt-6" style={{ backgroundColor: produto.corTema.bg }}>
         <div className="juta absolute inset-0 opacity-60" aria-hidden="true" />
         <PackShot produto={produto} className="relative mx-auto max-w-[180px] transition duration-500 group-hover:scale-[1.03]" />
+        {produto.corSabor && (
+          <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1.5" style={{ backgroundColor: produto.corSabor.base }} />
+        )}
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
@@ -25,7 +28,7 @@ export function ProductCard({ produto, headingLevel = "h3" }: { produto: Produto
           </div>
           <div className="rounded-xl bg-juta/70 px-3 py-2">
             <dt className="text-xs text-ink/65">Caixa</dt>
-            <dd className="font-bold">c/ {produto.unidadesPorCaixa} un</dd>
+            <dd className="font-bold">{caixaDe(produto)}</dd>
           </div>
         </dl>
       </div>

@@ -10,6 +10,7 @@ const destaquePorLinha: Record<string, string> = {
   "food-service": "fs-tradicional-800g",
   krisps: "krisps-original-45g",
   checkmate: "checkmate-petisco-queijo-50g",
+  "batata-chips-lisa": "chips-lisa-original-45g",
 };
 
 const motivos = [
@@ -54,7 +55,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {linhas.map((linha, i) => {
               const destaque = produtos.find((p) => p.id === destaquePorLinha[linha.slug])!;
               const qtd = produtosDaLinha(linha.slug).length;
@@ -69,7 +70,13 @@ export default function HomePage() {
                     <div className="relative">
                       <p className="text-xs font-bold uppercase tracking-widest opacity-85">{qtd} itens</p>
                       <h3 className={`mt-1 text-4xl leading-none ${linha.fonteTitulo === "serif" ? "font-serif" : "font-condensed uppercase"}`}>
-                        {linha.titulo}
+                        {linha.slug === "batata-chips-lisa" ? (
+                          <span style={{ color: linha.acento }}>
+                            Chips <span className="font-script text-3xl normal-case" style={{ color: destaque.corSabor?.texto }}>lisa</span>
+                          </span>
+                        ) : (
+                          linha.titulo
+                        )}
                       </h3>
                       <p className="mt-3 text-sm opacity-90">{linha.chamada}</p>
                     </div>
