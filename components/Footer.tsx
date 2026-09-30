@@ -10,7 +10,11 @@ export function Footer() {
       <div className="h-2 bg-gold" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <Logo className="h-20 w-auto" />
+          {/* placa creme: o ® da logo é preto e sumiria sobre o grafite */}
+          <Link href="/" className="inline-block rounded-2xl bg-offwhite px-4 py-3">
+            <Logo className="h-14 w-auto" sizes="125px" />
+            <span className="sr-only">, página inicial</span>
+          </Link>
           <p className="mt-4 max-w-xs text-sm text-white/75">
             Batata palha e snacks para o varejo, o atacado e o food service.
           </p>

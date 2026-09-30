@@ -26,7 +26,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-black/10 bg-offwhite/95 backdrop-blur supports-[backdrop-filter]:bg-offwhite/85">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0">
-          <Logo className="h-11 w-auto sm:h-14" title="Aliança Alimentos" />
+          <Logo className="h-11 w-auto sm:h-14" priority sizes="(min-width: 640px) 125px, 98px" />
           <span className="sr-only">, página inicial</span>
         </Link>
 

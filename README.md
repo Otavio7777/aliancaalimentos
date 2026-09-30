@@ -58,7 +58,9 @@ npm run images:lote -- scripts/lotes/lote-01.json --dry-run   # valida, amostra 
 npm run images:lote -- scripts/lotes/lote-01.json             # grava WebP 800/1600 + data/product-images-lotes.ts
 ```
 
-O script recorta a área útil com ~2% de margem (sem nunca cortar conteúdo), preserva o alfa e gera pranchas em `.image-previews/` com ampliações do selo "ALTO EM GORDURA SATURADA" e do texto "Imagem ilustrativa" — confira cada uma antes do commit. Status por arquivo: `docs/assets-manifest.md`.
+Logo oficial: `npm run images:logo -- assets/incoming/lote-01/logo-alianca-alimentos.png` gera `public/brand/*`, `app/icon.png`, `app/favicon.ico` e `public/og-image.png` (e para se o fundo não for transparente).
+
+O script de lote recorta a área útil com ~2% de margem (sem nunca cortar conteúdo), preserva o alfa e gera pranchas em `.image-previews/` com ampliações do selo "ALTO EM GORDURA SATURADA" e do texto "Imagem ilustrativa" — confira cada uma antes do commit. Status por arquivo: `docs/assets-manifest.md`.
 
 ## Leads (`/api/lead`)
 Validação com zod (CNPJ com dígito verificador, UF, telefone, consentimento LGPD), honeypot (`website`) e descarte silencioso de envios válidos feitos em menos de 2,5 s.

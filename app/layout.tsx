@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     siteName: site.nome,
     title: "Aliança Alimentos — Batata palha e snacks",
     description: site.descricao,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Logo Aliança Alimentos" }],
   },
   twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
@@ -41,7 +42,7 @@ const organization = {
   "@type": "Organization",
   name: site.nome,
   url: site.url,
-  logo: `${site.url}/icon.svg`,
+  logo: `${site.url}/brand/logo-alianca.png`,
   description: site.descricao,
   brand: [
     { "@type": "Brand", name: "Aliança" },
