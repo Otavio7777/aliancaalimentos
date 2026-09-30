@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: linha.nome,
     description: `${linha.chamada} ${linha.descricao}`,
     alternates: { canonical: `/produtos/${linha.slug}` },
-    openGraph: { title: `${linha.nome} | Aliança Alimentos`, description: linha.descricao },
+    openGraph: { title: `${linha.nome} | Aliança Alimentos`, description: linha.descricao, images: ["/opengraph-image"] },
   };
 }
 
