@@ -9,7 +9,7 @@ export function ProductCard({ produto, headingLevel = "h3" }: { produto: Produto
     >
       <div className="relative px-6 pb-2 pt-6" style={{ backgroundColor: produto.corTema.bg }}>
         <div className="juta absolute inset-0 opacity-60" aria-hidden="true" />
-        <PackShot produto={produto} className="relative mx-auto max-w-[180px] transition duration-500 group-hover:scale-[1.03]" />
+        <PackShot produto={produto} sizes="180px" className="relative mx-auto max-w-[180px] transition duration-500 group-hover:scale-[1.03]" />
         {produto.corSabor && (
           <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1.5" style={{ backgroundColor: produto.corSabor.base }} />
         )}

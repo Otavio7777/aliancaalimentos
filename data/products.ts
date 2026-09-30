@@ -86,7 +86,7 @@ export const cores = {
   cebolaSalsa: { bg: "#5E6B2A", ink: "#FFFFFF" },
   costelinhaLimao: { bg: "#16706B", ink: "#FFFFFF" },
   costelinhaBarbecue: { bg: "#7A2E1A", ink: "#FFFFFF" },
-  /** fundo da linha Batata Chips Lisa (embalagem preta) — [CONFIRMAR após amostragem] */
+  /** fundo da linha Batata Chips Lisa: preto das áreas planas da embalagem (amostrado #141414–#191919) */
   preto: { bg: "#141414", ink: "#FFFFFF" },
   /** dourado da tipografia "BATATA CHIPS" como texto sobre `preto` (contraste 8,8:1) */
   douradoChips: { bg: "#D4AF5A", ink: "#141414" },
@@ -94,8 +94,8 @@ export const cores = {
 
 /**
  * Cores de sabor da Batata Chips Lisa.
- * [CONFIRMAR após amostragem] `base` foi amostrada das cópias recebidas por mensagem
- * (WebP recomprimido), não dos originais — refazer com `npm run images:lote` no lote 01.
+ * `base` = amostragem de pixel do nome do sabor na embalagem (`npm run images:lote`, lote 01).
+ * [RECONFIRMAR com originais] a fonte foi a cópia de baixa qualidade enviada por mensagem.
  * `texto` é `base` clareada até contraste ≥ 4,6:1 sobre `cores.preto.bg`.
  */
 export const saboresChipsLisa = {
