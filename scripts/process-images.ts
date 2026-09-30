@@ -29,7 +29,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
-import sharp from "sharp";
+import sharp, { type OverlayOptions } from "sharp";
 
 type Regiao = { x: number; y: number; w: number; h: number };
 type Verificacao = Regiao & { nome: string };
@@ -219,7 +219,7 @@ async function processar(item: Item) {
     }),
   );
   const alturaTotal = 40 + ih + zooms.reduce((s, z) => s + 40 + z.h, 0);
-  const camadas: sharp.OverlayOptions[] = [{ input: rotulo(`${item.sku} — confira: ${item.confira}`, PW), top: 0, left: 0 }];
+  const camadas: OverlayOptions[] = [{ input: rotulo(`${item.sku} — confira: ${item.confira}`, PW), top: 0, left: 0 }];
   let y = 40;
   camadas.push({ input: inteira, top: y, left: 0 });
   y += ih;
