@@ -5,17 +5,19 @@ Itens que dependem da Aliança Alimentos ou de acesso que não estava disponíve
 ## 0. Lotes de fotos e novas linhas (set/2026)
 
 ### Imagens pendentes
-Originais ainda não estão em `assets/incoming/`. Enquanto isso, os SKUs usam placeholder na cor do tema. Status arquivo a arquivo: `docs/assets-manifest.md`.
-- [ ] **Lote 01 (`assets/incoming/lote-01/`):** Chips Lisa Costelinha com Barbecue 150g, Creme de Cebola 150g, Creme de Cebola 45g, Frango Grelhado 45g, Original 45g, além da logo oficial (lote 1B). Processar com `npm run images:lote -- scripts/lotes/lote-01.json`.
-- [ ] **Lote 02 (`assets/incoming/lote-02/`):** Krisp's Churrasco 45g, Palha Extrafina 80g, Palha Extrafina 300g, Palha Tradicional 80g, Checkmate Petisco Bacon 50g. Processar com `npm run images:lote -- scripts/lotes/lote-02.json`.
-- [ ] **Lote 03 (`assets/incoming/lote-03/`):** Checkmate Petisco Costelinha/Limão 100g, Checkmate Skin Bacon 40g, Palha Zero Sódio 100g, Palha Tradicional 100g e Chips Lisa Original 150g. Processar com `npm run images:lote -- scripts/lotes/lote-03.json`.
+Status arquivo a arquivo em `docs/assets-manifest.md`.
+- [ ] **Substituir pelos originais (lote 01 e logo):** os 5 SKUs da Chips Lisa do lote 01 e a logo já estão no site, mas foram processados a partir das cópias de baixa qualidade enviadas por mensagem. Sobrescrever os arquivos em `assets/incoming/lote-01/` pelos originais e rodar `npm run images:lote -- scripts/lotes/lote-01.json` e `npm run images:logo -- assets/incoming/lote-01/logo-alianca-alimentos.png`.
+- [ ] [PREENCHER] logo em maior resolução ou vetorial: a área útil da logo recebida tem 1099 px de largura (menos que 1200).
+- [ ] O ® da logo é preto e fica ilegível sobre fundo escuro. No rodapé, a logo foi posta sobre uma placa creme. Confirmar se existe versão oficial para fundo escuro.
+- [ ] **Lote 02 (`assets/incoming/lote-02/`), sem arquivo no ambiente:** Krisp's Churrasco 45g, Palha Extrafina 80g, Palha Extrafina 300g, Palha Tradicional 80g, Checkmate Petisco Bacon 50g. Processar com `npm run images:lote -- scripts/lotes/lote-02.json`.
+- [ ] **Lote 03 (`assets/incoming/lote-03/`), sem arquivo no ambiente:** Checkmate Petisco Costelinha/Limão 100g, Checkmate Skin Bacon 40g, Palha Zero Sódio 100g, Palha Tradicional 100g e Chips Lisa Original 150g. Processar com `npm run images:lote -- scripts/lotes/lote-03.json`.
 - [ ] Logo oficial em maior resolução ou vetorial, se o PNG do lote 1B tiver menos de 1200px de largura (checar ao receber).
 
 ### Batata Chips Lisa
 - [ ] [PREENCHER] un/cx Chips Lisa 45g
 - [ ] [PREENCHER] un/cx Chips Lisa 150g (Creme de Cebola, Costelinha com Barbecue e Original, esta incluída no lote 3)
 - [ ] [PREENCHER] canal da linha. Hoje fica `null`: a UI mostra "Consulte-nos" e os filtros tratam como Varejo.
-- [ ] [CONFIRMAR após amostragem] cores de sabor (`saboresChipsLisa` em `data/products.ts`) e fundo preto `#141414`. Hoje foram amostradas das cópias WebP recebidas por mensagem, não dos originais.
+- [ ] [RECONFIRMAR com originais] cores de sabor (`saboresChipsLisa` em `data/products.ts`: vermelho `#F21815`, verde `#057225`, laranja `#C43801`, azul `#015CBF`) e preto `#141414`. Foram amostradas por pixel nas cópias de baixa qualidade. O Original 150g usa o mesmo azul do 45g e continua com placeholder.
 - [ ] Texto de marketing da linha ("Lâmina fina, crocância premium.") precisa da aprovação da marca.
 
 ### Lote 2: observações para conferir nos originais
@@ -31,7 +33,7 @@ Originais ainda não estão em `assets/incoming/`. Enquanto isso, os SKUs usam p
 - [ ] **Fotos das embalagens:** todos os 28 SKUs usam placeholder vetorial na cor do tema (`components/PackShot.tsx`), já com o selo frontal "ALTO EM GORDURA SATURADA". Quando o PDF chegar: seguir a seção "Imagens do catálogo" do README (`npm run images`) e conferir se o selo ficou inteiro em cada recorte.
 - [ ] **Cores reais por amostragem de pixels:** os tokens atuais são as aproximações do briefing. Rodar o script com a seção `cores` do `crops.json` e atualizar `data/products.ts` (`cores`) e `app/globals.css` (`--alianca-*`). Checkmate (cor base da linha) foi definido como grafite `#1E1B1C`, e Costelinha/Barbecue (Skin) como `#7A2E1A` — **confirmar**.
 - [ ] **Selo por SKU:** confirmar, embalagem a embalagem, quais produtos têm o selo "Alto em gordura saturada" (campo `seloAltoGorduraSaturada`, hoje `true` para todos) e se algum tem outros selos (ex.: "Alto em sódio"). Zero Sódio precisa de conferência específica.
-- [ ] **Logotipo oficial:** `components/Logo.tsx` é uma recriação vetorial provisória. Substituir pelo SVG oficial da marca (e `app/icon.svg`).
+- [x] **Logotipo oficial:** aplicado a partir da cópia recebida (lote 1B). Substituir pelo original ou vetorial: ver seção 0.
 - [ ] **Sabor do Sachê 12g:** o catálogo não informa o sabor; exibido como "Sachê individual".
 - [ ] **Nome comercial da Extrafina:** a paleta cita "Extrafina Gourmet"; o site usa "Batata Palha Extrafina" (como na lista de SKUs). Confirmar.
 
