@@ -1,0 +1,70 @@
+{
+  "$comment": "Lote 3. #1–#4 já vêm recortados (o pipeline só acrescenta margem transparente); #5 vem em canvas quadrado. Pouches: a faixa creme do topo (zíper/selagem) faz parte da área útil e não é cortada. Regiões aproximadas; confira nas pranchas.",
+  "origem": "assets/incoming/lote-03",
+  "itens": [
+    {
+      "arquivo": "Checkmate_Petisco_100g_Costelinha.png",
+      "destino": "public/products/checkmate-petisco/costelinha-limao-100g",
+      "sku": "checkmate-petisco-costelinha-limao-100g",
+      "confira": "Checkmate Petisco Costelinha com Limão · 100 g (sem selo frontal)",
+      "amostra": { "x": 0.45, "y": 0.02, "w": 0.45, "h": 0.07 },
+      "verificar": [
+        { "nome": "topo", "x": 0.0, "y": 0.0, "w": 1.0, "h": 0.2 },
+        { "nome": "rodape", "x": 0.0, "y": 0.78, "w": 1.0, "h": 0.22 }
+      ]
+    },
+    {
+      "arquivo": "Checkmate_Skin_Bacon_40g.png",
+      "destino": "public/products/checkmate-skin/bacon-40g",
+      "sku": "checkmate-skin-bacon-40g",
+      "confira": "Checkmate Skin Sabor Bacon · 40 g",
+      "amostra": {
+        "base": { "x": 0.4, "y": 0.02, "w": 0.5, "h": 0.06 },
+        "apoio": { "x": 0.1, "y": 0.82, "w": 0.25, "h": 0.03 }
+      },
+      "verificar": [
+        { "nome": "selo-alto-em-gordura-saturada", "x": 0.7, "y": 0.05, "w": 0.3, "h": 0.2 },
+        { "nome": "rodape-novo-peso", "x": 0.0, "y": 0.8, "w": 1.0, "h": 0.2 }
+      ]
+    },
+    {
+      "arquivo": "Palha_EF_zero_sal_100g.png",
+      "destino": "public/products/batata-palha/zero-sodio-100g",
+      "sku": "bp-zero-sodio-100g",
+      "confira": "Batata Palha Extrafina Zero Sódio · 100 g (pouch)",
+      "amostra": { "x": 0.25, "y": 0.1, "w": 0.2, "h": 0.05 },
+      "verificar": [
+        { "nome": "faixa-topo-e-selo", "x": 0.0, "y": 0.0, "w": 1.0, "h": 0.22 },
+        { "nome": "imagens-ilustrativas", "x": 0.2, "y": 0.8, "w": 0.15, "h": 0.15 },
+        { "nome": "nota-sodio-e-rodape", "x": 0.3, "y": 0.8, "w": 0.5, "h": 0.2 }
+      ]
+    },
+    {
+      "arquivo": "Palha_tradicional_100g.png",
+      "destino": "public/products/batata-palha/tradicional-100g",
+      "sku": "bp-tradicional-100g",
+      "confira": "Batata Palha Tradicional · 100 g (pouch)",
+      "amostra": {
+        "base": { "x": 0.25, "y": 0.1, "w": 0.2, "h": 0.05 },
+        "apoio": { "x": 0.02, "y": 0.3, "w": 0.1, "h": 0.1 }
+      },
+      "verificar": [
+        { "nome": "faixa-topo-e-selo", "x": 0.0, "y": 0.0, "w": 1.0, "h": 0.22 },
+        { "nome": "imagens-ilustrativas", "x": 0.2, "y": 0.8, "w": 0.15, "h": 0.15 },
+        { "nome": "rodape", "x": 0.3, "y": 0.85, "w": 0.4, "h": 0.15 }
+      ]
+    },
+    {
+      "arquivo": "46707-MOCKUP-BATATA-CHIPS-LISA-ORIGINAL-150G_AF01.png",
+      "destino": "public/products/batata-chips-lisa/original-150g",
+      "sku": "chips-lisa-original-150g",
+      "confira": "Batata Chips Lisa Original (Clássica Natural) · 150 g",
+      "amostra": { "x": 0.36, "y": 0.66, "w": 0.3, "h": 0.07 },
+      "verificar": [
+        { "nome": "selo-alto-em-gordura-saturada", "x": 0.62, "y": 0.0, "w": 0.38, "h": 0.24 },
+        { "nome": "imagem-ilustrativa", "x": 0.0, "y": 0.4, "w": 0.16, "h": 0.4 },
+        { "nome": "para-compartilhar-e-rodape", "x": 0.0, "y": 0.75, "w": 1.0, "h": 0.25 }
+      ]
+    }
+  ]
+}
