@@ -21,6 +21,8 @@ export interface Cor {
   bg: string;
   /** cor de texto com contraste AA sobre `bg` */
   ink: string;
+  /** cor secundária da embalagem (acento/apoio) — só decorativa, nunca como fundo de texto */
+  apoio?: string;
 }
 
 /** Cor de sabor sobre fundo escuro (linha Batata Chips Lisa). */
@@ -90,6 +92,24 @@ export const cores = {
   preto: { bg: "#141414", ink: "#FFFFFF" },
   /** dourado da tipografia "BATATA CHIPS" como texto sobre `preto` (contraste 8,8:1) */
   douradoChips: { bg: "#D4AF5A", ink: "#141414" },
+} satisfies Record<string, Cor>;
+
+/**
+ * Cores medidas por amostragem de pixel nas fotos de embalagem (`npm run images:lote`),
+ * por SKU. [RECONFIRMAR com originais]: as fontes foram cópias de baixa qualidade.
+ * `ink` escolhido pelo maior contraste (AA ≥ 4,5:1) sobre `bg`.
+ */
+export const coresEmbalagem = {
+  /** lote 02 — navy #28305E (branco 12,5:1), acento vermelho #D92230 */
+  "krisps-churrasco-45g": { bg: "#28305E", ink: "#FFFFFF", apoio: "#D92230" },
+  /** lote 02 — dourado/mostarda #C19F53: branco falha (2,5:1) → tinta escura (7,2:1) */
+  "bp-extrafina-80g": { bg: "#C19F53", ink: "#1A1414" },
+  /** lote 02 — #C09C53 medido no 300g (tinta escura, 7,1:1) */
+  "bp-extrafina-300g": { bg: "#C09C53", ink: "#1A1414" },
+  /** lote 02 — vermelho #DD1E21 (branco 4,9:1), azul de apoio #41649A */
+  "bp-tradicional-80g": { bg: "#DD1E21", ink: "#FFFFFF", apoio: "#41649A" },
+  /** lote 02 — roxo #481152 (branco 14,2:1), magenta #E55278 */
+  "checkmate-petisco-bacon-50g": { bg: "#481152", ink: "#FFFFFF", apoio: "#E55278" },
 } satisfies Record<string, Cor>;
 
 /**
@@ -165,6 +185,7 @@ type Base = Omit<Produto, "id" | "imagem" | "seloAltoGorduraSaturada"> & { id?: 
 function p(item: Base & { id: string }): Produto {
   return {
     ...item,
+    corTema: (coresEmbalagem as Record<string, Cor>)[item.id] ?? item.corTema,
     imagem: imagensLotes[item.id] ?? imagensProdutos[item.id] ?? null,
     seloAltoGorduraSaturada: item.seloAltoGorduraSaturada ?? true,
   };
