@@ -8,7 +8,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "images": "python3 scripts/extract_catalog.py",
-    "images:lote": "node scripts/process-images.ts"
+    "images:lote": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/process-images.ts"
   },
   "engines": {
     "node": ">=20"
