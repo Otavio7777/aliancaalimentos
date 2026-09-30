@@ -30,17 +30,30 @@ Processada com `npm run images:logo -- assets/incoming/lote-01/logo-alianca-alim
 
 ## Lote 02: SKUs existentes (`scripts/lotes/lote-02.json`)
 
-As imagens dos lotes 02 e 03 foram mostradas na conversa, mas **não chegaram ao ambiente como arquivo**. Por isso continuam pendentes: não dá para processá-las e elas não serão recriadas.
+Fonte: cópias WebP reenviadas por mensagem, todas **com alfa real** (cantos com alpha 0), gravadas como PNG sem perdas. Selo, "Imagem ilustrativa", tabela nutricional, rodapés e "Novo peso…" foram conferidos nas pranchas. O Petisco não tem selo, e nenhum foi adicionado.
+
+| SKU | Canvas | Área útil | Margem | Recorte final | `-800` / `-1600` | Cores medidas |
+|---|---|---|---|---|---|---|
+| `krisps-churrasco-45g` | 2000x2000 (muita margem) | 1097x1623 | 33px | 1163x1689 | 800 / **1163** px | navy `#28305E`, acento `#D92230` |
+| `bp-extrafina-80g` | 1454x2000 (já justo) | 1451x2000 | 40px | 1531x2080 | 800 / **1531** px | `#C19F53` |
+| `bp-extrafina-300g` | 1454x2000 (já justo) | 1451x2000 | 40px | 1531x2080 | 800 / **1531** px | `#C09C53` |
+| `bp-tradicional-80g` | 1454x2000 (já justo) | 1451x2000 | 40px | 1531x2080 | 800 / **1531** px | vermelho `#DD1E21`, azul `#41649A` |
+| `checkmate-petisco-bacon-50g` | 1110x2000 (já justo) | 1107x2000 | 40px | 1187x2080 | 800 / **1187** px | roxo `#481152`, magenta `#E55278` |
+
+Nas imagens que já vinham justas, a embalagem encosta na borda do canvas. O pipeline não cortou nada, só acrescentou margem transparente. Nenhum `-1600` foi ampliado: todos ficaram na largura real da fonte.
+
 
 | Original | Arquivo final (`public/products/`) | SKU | Status |
 |---|---|---|---|
-| `BATATA_ONDULADA_CHURRASCO_45G.png` | `krisps/churrasco-45g-{800,1600}.webp` | `krisps-churrasco-45g` | pendente |
-| `Batata_Palha_EF_Alianc_a_80g.png` | `batata-palha/extrafina-80g-{800,1600}.webp` | `bp-extrafina-80g` | pendente |
-| `Batata_Palha_EF_Alianc_a_300g.png` | `batata-palha/extrafina-300g-{800,1600}.webp` | `bp-extrafina-300g` | pendente |
-| `Batata_tradicional_80g.png` | `batata-palha/tradicional-80g-{800,1600}.webp` | `bp-tradicional-80g` | pendente |
-| `Checkmate_Petisco_50g_Bacon.png` | `checkmate-petisco/bacon-50g-{800,1600}.webp` | `checkmate-petisco-bacon-50g` | pendente |
+| `BATATA_ONDULADA_CHURRASCO_45G.png` | `krisps/churrasco-45g-{800,1600}.webp` | `krisps-churrasco-45g` | baixa qualidade, substituir pelos originais |
+| `Batata_Palha_EF_Alianc_a_80g.png` | `batata-palha/extrafina-80g-{800,1600}.webp` | `bp-extrafina-80g` | baixa qualidade, substituir pelos originais |
+| `Batata_Palha_EF_Alianc_a_300g.png` | `batata-palha/extrafina-300g-{800,1600}.webp` | `bp-extrafina-300g` | baixa qualidade, substituir pelos originais |
+| `Batata_tradicional_80g.png` (a embalagem diz "Batata Palha", sem "Tradicional") | `batata-palha/tradicional-80g-{800,1600}.webp` | `bp-tradicional-80g` | baixa qualidade, substituir pelos originais |
+| `Checkmate_Petisco_50g_Bacon.png` | `checkmate-petisco/bacon-50g-{800,1600}.webp` | `checkmate-petisco-bacon-50g` | baixa qualidade, substituir pelos originais |
 
 ## Lote 03 (`scripts/lotes/lote-03.json`)
+
+As imagens do lote 03 ainda **não chegaram ao ambiente como arquivo**, então continuam pendentes e não serão recriadas.
 
 | Original | Arquivo final (`public/products/`) | SKU | Status |
 |---|---|---|---|

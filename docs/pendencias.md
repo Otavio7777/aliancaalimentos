@@ -10,7 +10,9 @@ Status arquivo a arquivo em `docs/assets-manifest.md`.
 - [ ] Largura real das fotos do lote 01: as cópias rendem 1180px de largura útil, então os arquivos `*-1600.webp` da Chips Lisa têm **1180px** (não foram ampliados). Com os originais, gerar de novo em 1600px.
 - [ ] [PREENCHER] logo em maior resolução ou vetorial: a área útil da logo recebida tem 1099 px de largura (menos que 1200).
 - [ ] O ® da logo é preto e fica ilegível sobre fundo escuro. No rodapé, a logo foi posta sobre uma placa creme. Confirmar se existe versão oficial para fundo escuro.
-- [ ] **Lote 02 (`assets/incoming/lote-02/`), sem arquivo no ambiente:** Krisp's Churrasco 45g, Palha Extrafina 80g, Palha Extrafina 300g, Palha Tradicional 80g, Checkmate Petisco Bacon 50g. Processar com `npm run images:lote -- scripts/lotes/lote-02.json`.
+- [ ] **Substituir pelos originais (lote 02):** Krisp's Churrasco 45g, Palha Extrafina 80g e 300g, Palha Tradicional 80g e Checkmate Petisco Bacon 50g já estão no site a partir de cópias de baixa qualidade. Os `-1600.webp` têm entre 1163 e 1531 px, porque não foram ampliados. Sobrescrever `assets/incoming/lote-02/` e rodar `npm run images:lote -- scripts/lotes/lote-02.json`.
+- [ ] [RECONFIRMAR com originais] cores do lote 02 em `coresEmbalagem` (`data/products.ts`).
+- [ ] A embalagem da Palha 80g vermelha não traz a palavra "Tradicional", só "Batata Palha" e "Batata Palha Frita". O site segue o catálogo e chama o item de Tradicional. Confirmar o nome.
 - [ ] **Lote 03 (`assets/incoming/lote-03/`), sem arquivo no ambiente:** Checkmate Petisco Costelinha/Limão 100g, Checkmate Skin Bacon 40g, Palha Zero Sódio 100g, Palha Tradicional 100g e Chips Lisa Original 150g. Processar com `npm run images:lote -- scripts/lotes/lote-03.json`.
 - [ ] Logo oficial em maior resolução ou vetorial, se o PNG do lote 1B tiver menos de 1200px de largura (checar ao receber).
 
@@ -22,7 +24,7 @@ Status arquivo a arquivo em `docs/assets-manifest.md`.
 - [ ] Texto de marketing da linha ("Lâmina fina, crocância premium.") precisa da aprovação da marca.
 
 ### Lote 2: observações para conferir nos originais
-- [ ] **Selo frontal no Checkmate Petisco:** as embalagens de Bacon 50g e Costelinha/Limão 100g **não têm** o selo "ALTO EM GORDURA SATURADA". Seguindo a instrução do lote 3, `seloAltoGorduraSaturada` passou a `false` para **toda** a linha Petisco (placeholder e alt sem selo). Falta confirmar Pimenta, Queijo, Churrasco e Cebola e Salsa nas duas gramaturas.
+- [ ] **Selo frontal no Checkmate Petisco:** a foto do Bacon 50g (lote 02) confirma que ele não tem o selo, e a imagem anexada do Costelinha/Limão 100g também **não tem** o selo "ALTO EM GORDURA SATURADA". Seguindo a instrução do lote 3, `seloAltoGorduraSaturada` passou a `false` para **toda** a linha Petisco (placeholder e alt sem selo). Falta confirmar Pimenta, Queijo, Churrasco e Cebola e Salsa nas duas gramaturas.
 - [ ] **Zero Sódio:** usar a formulação da embalagem ("Zero adição de sal*", com a nota "*Contém sódio próprio dos ingredientes") nos textos do SKU e da linha. Aplicar junto com a foto do lote 3.
 - [ ] A página da linha Checkmate é `/produtos/checkmate` (Skin e Petisco juntos). Não existe `/produtos/checkmate-petisco`. O destino da foto (`/products/checkmate-petisco/`) é só uma pasta.
 
