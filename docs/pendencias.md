@@ -7,6 +7,7 @@ Itens que dependem da Aliança Alimentos ou de acesso que não estava disponíve
 ### Imagens pendentes
 Status arquivo a arquivo em `docs/assets-manifest.md`.
 - [ ] **Substituir pelos originais (lote 01 e logo):** os 5 SKUs da Chips Lisa do lote 01 e a logo já estão no site, mas foram processados a partir das cópias de baixa qualidade enviadas por mensagem. Sobrescrever os arquivos em `assets/incoming/lote-01/` pelos originais e rodar `npm run images:lote -- scripts/lotes/lote-01.json` e `npm run images:logo -- assets/incoming/lote-01/logo-alianca-alimentos.png`.
+- [ ] Largura real das fotos do lote 01: as cópias rendem 1180px de largura útil, então os arquivos `*-1600.webp` da Chips Lisa têm **1180px** (não foram ampliados). Com os originais, gerar de novo em 1600px.
 - [ ] [PREENCHER] logo em maior resolução ou vetorial: a área útil da logo recebida tem 1099 px de largura (menos que 1200).
 - [ ] O ® da logo é preto e fica ilegível sobre fundo escuro. No rodapé, a logo foi posta sobre uma placa creme. Confirmar se existe versão oficial para fundo escuro.
 - [ ] **Lote 02 (`assets/incoming/lote-02/`), sem arquivo no ambiente:** Krisp's Churrasco 45g, Palha Extrafina 80g, Palha Extrafina 300g, Palha Tradicional 80g, Checkmate Petisco Bacon 50g. Processar com `npm run images:lote -- scripts/lotes/lote-02.json`.
