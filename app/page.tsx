@@ -57,7 +57,9 @@ export default function HomePage() {
 
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {linhas.map((linha, i) => {
-              const destaque = produtos.find((p) => p.id === destaquePorLinha[linha.slug])!;
+              // prefere o destaque definido; se ele ainda não tem foto, usa o primeiro SKU da linha que tenha
+              const preferido = produtos.find((p) => p.id === destaquePorLinha[linha.slug])!;
+              const destaque = preferido.imagem ? preferido : (produtosDaLinha(linha.slug).find((p) => p.imagem) ?? preferido);
               const qtd = produtosDaLinha(linha.slug).length;
               return (
                 <Reveal as="li" key={linha.slug} delay={i * 0.08}>

@@ -18,7 +18,9 @@ export function PackShot({
   priority?: boolean;
   sizes?: string;
 }) {
-  const alt = `Embalagem ${produto.nome} ${produto.formato === "chips" ? "sabor " : ""}${produto.sabor} ${produto.gramatura}${
+  const sabor = produto.nome.includes(produto.sabor) ? "" : ` ${produto.formato === "chips" ? "sabor " : ""}${produto.sabor}`;
+  const formato = produto.formato === "familia" ? ", tamanho família" : produto.formato === "pouch" ? ", pouch" : "";
+  const alt = `Embalagem ${produto.nome}${sabor} ${produto.gramatura}${formato}${
     produto.seloAltoGorduraSaturada ? ", com selo frontal Alto em gordura saturada" : ""
   }`;
 

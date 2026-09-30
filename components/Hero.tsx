@@ -57,7 +57,7 @@ export function Hero() {
         <div className="flex h-full items-center overflow-hidden whitespace-nowrap font-condensed text-lg tracking-widest text-ink sm:text-xl">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="px-6">
-              BATATA PALHA · KRISP&apos;S · CHECKMATE · FOOD SERVICE ·
+              BATATA PALHA · CHIPS LISA · KRISP&apos;S · CHECKMATE · FOOD SERVICE ·
             </span>
           ))}
         </div>
