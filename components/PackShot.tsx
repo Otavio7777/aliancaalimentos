@@ -94,13 +94,13 @@ function PackIllustration({ produto, alt, className }: { produto: Produto; alt: 
         {/* elemento gráfico por linha */}
         {produto.linha === "checkmate" && (
           <>
-            <rect x="0" y="0" width="38" height="290" fill="rgba(0,0,0,.35)" />
+            <rect x="30" y="0" width="34" height="290" fill="rgba(0,0,0,.35)" />
             <text
               x="0"
               y="0"
-              transform={`translate(28 ${bottom - 10}) rotate(-90)`}
+              transform={`translate(56 ${bottom - 22}) rotate(-90)`}
               fontFamily="var(--font-anton), Impact, sans-serif"
-              fontSize="26"
+              fontSize="24"
               letterSpacing="1"
               fill={ink}
             >
@@ -198,7 +198,7 @@ function PackIllustration({ produto, alt, className }: { produto: Produto; alt: 
               </text>
             )}
             <text
-              x={produto.linha === "checkmate" ? 114 : 100}
+              x={produto.linha === "checkmate" ? 117 : 100}
               y={produto.linha === "checkmate" ? 76 : 104}
               fontFamily="var(--font-anton), Impact, sans-serif"
               fontSize={produto.linha === "checkmate" ? 22 : 12}
@@ -206,7 +206,7 @@ function PackIllustration({ produto, alt, className }: { produto: Produto; alt: 
             >
               {produto.linha === "checkmate" ? produto.nome.replace("Checkmate ", "").toUpperCase() : "BATATA ONDULADA"}
             </text>
-            <text x={produto.linha === "checkmate" ? 114 : 100} y={produto.linha === "checkmate" ? 100 : 128} fontFamily="var(--font-dm-sans), sans-serif" fontWeight="700" fontSize="13">
+            <text x={produto.linha === "checkmate" ? 117 : 100} y={produto.linha === "checkmate" ? 100 : 128} fontFamily="var(--font-dm-sans), sans-serif" fontWeight="700" fontSize="13">
               {produto.sabor.toUpperCase()}
             </text>
           </>
@@ -232,7 +232,7 @@ function PackIllustration({ produto, alt, className }: { produto: Produto; alt: 
 
       {/* selo frontal de alerta nutricional — sempre visível */}
       {produto.seloAltoGorduraSaturada && (
-        <g transform={`translate(${f === "sache" ? 48 : produto.linha === "checkmate" ? 46 : left + 10} ${bottom - (f === "sache" ? 46 : 60)})`}>
+        <g transform={`translate(${f === "sache" ? 48 : produto.linha === "checkmate" ? 72 : left + 10} ${bottom - (f === "sache" ? 46 : 60)})`}>
           <rect width={f === "sache" ? 64 : 76} height={f === "sache" ? 26 : 30} fill="#fff" stroke="#000" strokeWidth="1.6" />
           <g transform={`translate(${f === "sache" ? 9 : 10} ${f === "sache" ? 13 : 15})`}>
             <circle r="5" fill="none" stroke="#000" strokeWidth="1.8" />

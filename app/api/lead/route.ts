@@ -18,10 +18,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Requisição inválida." }, { status: 400 });
   }
 
-  // Anti-spam: honeypot preenchido ou envio rápido demais → fingimos sucesso.
+  // Anti-spam 1: honeypot preenchido → fingimos sucesso sem processar.
   const raw = body as Record<string, unknown>;
-  const startedAt = Number(raw?.startedAt ?? 0);
-  if ((typeof raw?.website === "string" && raw.website.length > 0) || (startedAt && Date.now() - startedAt < 2500)) {
+  if (typeof raw?.website === "string" && raw.website.length > 0) {
     return NextResponse.json({ ok: true });
   }
 
@@ -31,6 +30,12 @@ export async function POST(req: Request) {
       { ok: false, error: "Confira os campos destacados.", fields: z.flattenError(parsed.error).fieldErrors },
       { status: 422 },
     );
+  }
+
+  // Anti-spam 2: formulário válido preenchido rápido demais para um humano → descartado em silêncio.
+  const startedAt = Number(raw?.startedAt ?? 0);
+  if (startedAt && Date.now() - startedAt < 2500) {
+    return NextResponse.json({ ok: true });
   }
 
   const lead = parsed.data;

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 /** Entrada discreta (fade + leve subida). Desativada com prefers-reduced-motion. */
@@ -16,7 +16,7 @@ export function Reveal({
   as?: "div" | "li" | "section";
 }) {
   const reduce = useReducedMotion();
-  const Comp = motion[as];
+  const Comp = m[as];
   if (reduce) {
     const Static = as;
     return <Static className={className}>{children}</Static>;

@@ -2,6 +2,8 @@ import { z } from "zod";
 import { linhas } from "@/data/products";
 import { tiposNegocio, ufs } from "@/lib/site";
 
+z.config(z.locales.pt());
+
 export const onlyDigits = (v: string) => v.replace(/\D/g, "");
 
 /** Valida CNPJ (14 dígitos + dígitos verificadores). */

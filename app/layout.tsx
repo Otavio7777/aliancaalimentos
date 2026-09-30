@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeSync } from "@/components/ThemeSync";
 import { JsonLd } from "@/components/JsonLd";
+import { MotionProvider } from "@/components/Motion";
 import { site } from "@/lib/site";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -58,7 +59,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <ThemeSync />
         <Header />
-        <main id="conteudo">{children}</main>
+        <main id="conteudo">
+          <MotionProvider>{children}</MotionProvider>
+        </main>
         <Footer />
         <JsonLd data={organization} />
       </body>

@@ -70,7 +70,7 @@ export default async function LinhaPage({ params }: Props) {
         {linha.slug === "checkmate" && (
           <span
             aria-hidden="true"
-            className="text-vertical pointer-events-none absolute right-0 top-0 -z-10 h-full select-none font-condensed text-[7rem] leading-none opacity-10 sm:text-[11rem]"
+            className="text-vertical pointer-events-none absolute right-0 top-0 -z-10 h-full select-none font-condensed text-[5rem] leading-none opacity-10 sm:text-[7.5rem]"
           >
             CHECKMATE
           </span>

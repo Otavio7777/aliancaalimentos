@@ -1,7 +1,4 @@
-"use client";
-
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { Parallax } from "./Motion";
 import { PackShot } from "./PackShot";
 import { ButtonLink, Container } from "./ui";
 import { produtos } from "@/data/products";
@@ -9,16 +6,8 @@ import { produtos } from "@/data/products";
 const byId = (id: string) => produtos.find((p) => p.id === id)!;
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yFront = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -90]);
-  const yBack = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -30]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [-4, reduce ? -4 : 4]);
-
   return (
     <section
-      ref={ref}
       data-theme="#C8102E"
       data-theme-ink="#FFFFFF"
       className="juta relative isolate overflow-hidden bg-red text-white"
@@ -53,15 +42,15 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto h-[22rem] w-full max-w-md sm:h-[28rem] lg:h-[34rem]">
-          <motion.div style={{ y: yBack }} className="absolute left-0 top-10 w-[46%] -rotate-12 opacity-95">
+          <Parallax distance={30} rotateFrom={-12} className="absolute left-0 top-10 w-[46%] opacity-95">
             <PackShot produto={byId("bp-extrafina-100g")} sizes="25vw" />
-          </motion.div>
-          <motion.div style={{ y: yBack }} className="absolute right-0 top-12 w-[46%] rotate-12 opacity-95">
+          </Parallax>
+          <Parallax distance={30} rotateFrom={12} className="absolute right-0 top-12 w-[46%] opacity-95">
             <PackShot produto={byId("bp-temperada-100g")} sizes="25vw" />
-          </motion.div>
-          <motion.div style={{ y: yFront, rotate }} className="absolute left-1/2 top-0 w-[62%] -translate-x-1/2">
+          </Parallax>
+          <Parallax distance={90} rotateFrom={-4} rotateTo={4} className="absolute left-[19%] top-0 w-[62%]">
             <PackShot produto={byId("bp-tradicional-100g")} priority sizes="40vw" />
-          </motion.div>
+          </Parallax>
         </div>
       </Container>
       <div className="relative h-10 bg-gold sm:h-12" aria-hidden="true">

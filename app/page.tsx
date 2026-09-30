@@ -181,7 +181,7 @@ export default function HomePage() {
       >
         <span
           aria-hidden="true"
-          className="text-vertical pointer-events-none absolute -left-4 top-0 hidden h-full select-none font-condensed text-[9rem] leading-none text-white/5 md:block"
+          className="text-vertical pointer-events-none absolute -left-4 top-0 hidden h-full select-none font-condensed text-[8rem] leading-none text-white/5 md:block"
         >
           CHECKMATE
         </span>
