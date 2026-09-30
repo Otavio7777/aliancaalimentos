@@ -49,6 +49,17 @@ npm run images                                   # gera public/products/*.webp +
 ```
 As cores amostradas são impressas no terminal — atualize `cores` em `data/products.ts` e os tokens em `app/globals.css`. **Confira que o selo "ALTO EM GORDURA SATURADA" ficou inteiro em cada recorte.**
 
+## Fotos de embalagem por lote
+
+Fotos enviadas pela Aliança entram em `assets/incoming/<lote>/` (originais, nunca alterados) e são descritas em `scripts/lotes/<lote>.json` (arquivo → destino → SKU, regiões de amostragem de cor e de conferência).
+
+```bash
+npm run images:lote -- scripts/lotes/lote-01.json --dry-run   # valida, amostra cores, gera pranchas
+npm run images:lote -- scripts/lotes/lote-01.json             # grava WebP 800/1600 + data/product-images-lotes.ts
+```
+
+O script recorta a área útil com ~2% de margem (sem nunca cortar conteúdo), preserva o alfa e gera pranchas em `.image-previews/` com ampliações do selo "ALTO EM GORDURA SATURADA" e do texto "Imagem ilustrativa" — confira cada uma antes do commit. Status por arquivo: `docs/assets-manifest.md`.
+
 ## Leads (`/api/lead`)
 Validação com zod (CNPJ com dígito verificador, UF, telefone, consentimento LGPD), honeypot (`website`) e descarte silencioso de envios válidos feitos em menos de 2,5 s.
 
