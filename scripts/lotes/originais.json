@@ -1,0 +1,1764 @@
+{
+  "$comment": "Originais 2–39 (SVGs do Canva → cor RGB + máscara de luminância, bytes sem recompressão). Gerado a partir de manifesto-originais.json (identificação já conferida pelo texto da embalagem). O pipeline compõe RGBA (máscara = alfa) antes do trim e do WebP, e confere os SHA-256. Regiões de `amostra`/`verificar` herdadas dos lotes 1–3 por família: confira nas pranchas. O logo (nº 1) vai por `npm run images:logo`.",
+  "origem": "assets/incoming/originais",
+  "itens": [
+    {
+      "n": 2,
+      "arquivo": "batata-chips-lisa__original-45g.color.png",
+      "mascara": "batata-chips-lisa__original-45g.mask.png",
+      "sha256": {
+        "cor": "59eebb7a7286de4109748dbf337503b853cd7f785988309a442f12c4b19c53a3",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/original-45g",
+      "sku": "chips-lisa-original-45g",
+      "confira": "Batata Chips Lisa Original Clássica Natural 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "arquivo": "batata-chips-lisa__creme-de-cebola-45g.color.png",
+      "mascara": "batata-chips-lisa__creme-de-cebola-45g.mask.png",
+      "sha256": {
+        "cor": "85d51da430ef472b8bc7429bb42a86c48e26fa9c858e5cc9eb24371d043173b0",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/creme-de-cebola-45g",
+      "sku": "chips-lisa-creme-de-cebola-45g",
+      "confira": "Batata Chips Lisa Creme de Cebola 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "arquivo": "batata-chips-lisa__costelinha-barbecue-45g.color.png",
+      "mascara": "batata-chips-lisa__costelinha-barbecue-45g.mask.png",
+      "sha256": {
+        "cor": "761f002eceebb8c14be790bff017b7d172b8f754cf8beb9606bc36ac23cd976e",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/costelinha-barbecue-45g",
+      "sku": "chips-lisa-costelinha-com-barbecue-45g",
+      "confira": "Batata Chips Lisa Costelinha com Barbecue 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        },
+        {
+          "nome": "para-compartilhar-e-rodape",
+          "x": 0.0,
+          "y": 0.75,
+          "w": 1.0,
+          "h": 0.25
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "arquivo": "batata-chips-lisa__frango-grelhado-45g.color.png",
+      "mascara": "batata-chips-lisa__frango-grelhado-45g.mask.png",
+      "sha256": {
+        "cor": "86ee3fb58ddfffaf13737ee2ee382dce3a730ca8d8220dc11cd6b77de4b96395",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/frango-grelhado-45g",
+      "sku": "chips-lisa-frango-grelhado-45g",
+      "confira": "Batata Chips Lisa Frango Grelhado 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "arquivo": "batata-chips-lisa__cheddar-bacon-45g.color.png",
+      "mascara": "batata-chips-lisa__cheddar-bacon-45g.mask.png",
+      "sha256": {
+        "cor": "c79f7f00d0119ce191cfe62e8f1bdf57eb3361ddc3e32a94d668ad69f362bb32",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/cheddar-bacon-45g",
+      "sku": "chips-lisa-cheddar-e-bacon-45g",
+      "confira": "Batata Chips Lisa Cheddar e Bacon 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        },
+        {
+          "nome": "para-compartilhar-e-rodape",
+          "x": 0.0,
+          "y": 0.75,
+          "w": 1.0,
+          "h": 0.25
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "arquivo": "batata-chips-lisa__creme-de-cebola-150g.color.png",
+      "mascara": "batata-chips-lisa__creme-de-cebola-150g.mask.png",
+      "sha256": {
+        "cor": "9948d7a3e2e0bb0f03fa0a85db21dcaa216d3bea1fe7390bf43638300e1d9cf3",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/creme-de-cebola-150g",
+      "sku": "chips-lisa-creme-de-cebola-150g",
+      "confira": "Batata Chips Lisa Creme de Cebola 150g (para compartilhar) — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "arquivo": "batata-chips-lisa__cheddar-bacon-150g.color.png",
+      "mascara": "batata-chips-lisa__cheddar-bacon-150g.mask.png",
+      "sha256": {
+        "cor": "7d7b2a41edd981d61b65b9c21f2fadea004c0afde4c94c6657e520ae37bf6c4b",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/cheddar-bacon-150g",
+      "sku": "chips-lisa-cheddar-e-bacon-150g",
+      "confira": "Batata Chips Lisa Cheddar e Bacon 150g (para compartilhar) — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        },
+        {
+          "nome": "para-compartilhar-e-rodape",
+          "x": 0.0,
+          "y": 0.75,
+          "w": 1.0,
+          "h": 0.25
+        }
+      ]
+    },
+    {
+      "n": 9,
+      "arquivo": "batata-chips-lisa__original-150g.color.png",
+      "mascara": "batata-chips-lisa__original-150g.mask.png",
+      "sha256": {
+        "cor": "ce2d92d98daeba85fc8b0139e75071404ad761360e21c7e33752bbdbc2b68f1f",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/original-150g",
+      "sku": "chips-lisa-original-150g",
+      "confira": "Batata Chips Lisa Original Clássica Natural 150g (para compartilhar) — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        },
+        {
+          "nome": "para-compartilhar-e-rodape",
+          "x": 0.0,
+          "y": 0.75,
+          "w": 1.0,
+          "h": 0.25
+        }
+      ]
+    },
+    {
+      "n": 10,
+      "arquivo": "batata-chips-lisa__frango-grelhado-150g.color.png",
+      "mascara": "batata-chips-lisa__frango-grelhado-150g.mask.png",
+      "sha256": {
+        "cor": "5bd67009ca54c750989bb614c80dde8e02c21dedff6a783db7c7c700a813249e",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/frango-grelhado-150g",
+      "sku": "chips-lisa-frango-grelhado-150g",
+      "confira": "Batata Chips Lisa Frango Grelhado 150g (para compartilhar) — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        },
+        {
+          "nome": "para-compartilhar-e-rodape",
+          "x": 0.0,
+          "y": 0.75,
+          "w": 1.0,
+          "h": 0.25
+        }
+      ]
+    },
+    {
+      "n": 11,
+      "arquivo": "batata-chips-lisa__costelinha-barbecue-150g.color.png",
+      "mascara": "batata-chips-lisa__costelinha-barbecue-150g.mask.png",
+      "sha256": {
+        "cor": "8809989fa68b761c3ea2002b18c50e4f92287c8225db489a41aaded6b53678c8",
+        "mascara": "ce8fdf5fe47eadb62c513b917fc76e73582be32a23308d09af17e83c99eba78d"
+      },
+      "destino": "public/products/batata-chips-lisa/costelinha-barbecue-150g",
+      "sku": "chips-lisa-costelinha-com-barbecue-150g",
+      "confira": "Batata Chips Lisa Costelinha com Barbecue 150g (para compartilhar) — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": null,
+      "canal": null,
+      "amostra": {
+        "x": 0.36,
+        "y": 0.66,
+        "w": 0.3,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.62,
+          "y": 0.0,
+          "w": 0.38,
+          "h": 0.24
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.4,
+          "w": 0.16,
+          "h": 0.4
+        }
+      ]
+    },
+    {
+      "n": 12,
+      "arquivo": "batata-palha__extrafina-sache-12g.color.png",
+      "mascara": "batata-palha__extrafina-sache-12g.mask.png",
+      "sha256": {
+        "cor": "715fa4bec17f93d6a24696e59a8a5836e6f330e08e0c2cb705b9a6efec1bd753",
+        "mascara": "7b3406dfd0abcf2a56adb8c6df6c808e2822e44e48049fcdc80c0bec05a1ec43"
+      },
+      "destino": "public/products/batata-palha/extrafina-sache-12g",
+      "sku": "fs-sache-12g",
+      "confira": "Batata Palha Gourmet Extrafina sachê 12g — selo ALTO EM presente",
+      "canvas": "1660x1851",
+      "unCx": 150,
+      "canal": "atacado-foodservice",
+      "amostra": {
+        "x": 0.05,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.08
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.65,
+          "y": 0.0,
+          "w": 0.35,
+          "h": 0.22
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.6,
+          "w": 0.14,
+          "h": 0.25
+        },
+        {
+          "nome": "tabela-nutricional",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 0.48,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape",
+          "x": 0.5,
+          "y": 0.8,
+          "w": 0.5,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 13,
+      "arquivo": "batata-palha__extrafina-80g.color.png",
+      "mascara": "batata-palha__extrafina-80g.mask.png",
+      "sha256": {
+        "cor": "a700555bcc53269ab50f9e8d2720da7886a6a9a732f5fe6baf1b60482634a1c1",
+        "mascara": "d9d0cf8e467f9da459c880ff1daa7c9db87e1cadb7f2e1288cfa57f5eea1c413"
+      },
+      "destino": "public/products/batata-palha/extrafina-80g",
+      "sku": "bp-extrafina-80g",
+      "confira": "Batata Palha Gourmet Extrafina 80g — selo ALTO EM presente",
+      "canvas": "1660x2284",
+      "unCx": 50,
+      "canal": "varejo",
+      "amostra": {
+        "x": 0.05,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.08
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.65,
+          "y": 0.0,
+          "w": 0.35,
+          "h": 0.22
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.6,
+          "w": 0.14,
+          "h": 0.25
+        },
+        {
+          "nome": "tabela-nutricional",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 0.48,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape",
+          "x": 0.5,
+          "y": 0.8,
+          "w": 0.5,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 14,
+      "arquivo": "batata-palha__extrafina-300g.color.png",
+      "mascara": "batata-palha__extrafina-300g.mask.png",
+      "sha256": {
+        "cor": "abdbb0fba9636235832da175bb6d32b43c4804ba7eaac83745f5f696e7eeae98",
+        "mascara": "d9d0cf8e467f9da459c880ff1daa7c9db87e1cadb7f2e1288cfa57f5eea1c413"
+      },
+      "destino": "public/products/batata-palha/extrafina-300g",
+      "sku": "bp-extrafina-300g",
+      "confira": "Batata Palha Gourmet Extrafina 300g (tamanho família) — selo ALTO EM presente",
+      "canvas": "1660x2284",
+      "unCx": 16,
+      "canal": "varejo",
+      "amostra": {
+        "x": 0.05,
+        "y": 0.3,
+        "w": 0.1,
+        "h": 0.08
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.65,
+          "y": 0.0,
+          "w": 0.35,
+          "h": 0.22
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.6,
+          "w": 0.14,
+          "h": 0.25
+        },
+        {
+          "nome": "tabela-nutricional",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 0.48,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape",
+          "x": 0.5,
+          "y": 0.8,
+          "w": 0.5,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 15,
+      "arquivo": "batata-palha__tradicional-80g.color.png",
+      "mascara": "batata-palha__tradicional-80g.mask.png",
+      "sha256": {
+        "cor": "5545554520fa622c023a1a0c3f75a0bb89ac8afebf3f7b066d2a23f8bf37e96b",
+        "mascara": "d9d0cf8e467f9da459c880ff1daa7c9db87e1cadb7f2e1288cfa57f5eea1c413"
+      },
+      "destino": "public/products/batata-palha/tradicional-80g",
+      "sku": "bp-tradicional-80g",
+      "confira": "Batata Palha Tradicional Super Crocante 80g — selo ALTO EM presente",
+      "canvas": "1660x2284",
+      "unCx": 50,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.4,
+          "y": 0.93,
+          "w": 0.2,
+          "h": 0.04
+        },
+        "apoio": {
+          "x": 0.2,
+          "y": 0.42,
+          "w": 0.12,
+          "h": 0.06
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.0,
+          "y": 0.05,
+          "w": 0.35,
+          "h": 0.18
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.82,
+          "y": 0.45,
+          "w": 0.18,
+          "h": 0.2
+        },
+        {
+          "nome": "tabela-nutricional",
+          "x": 0.0,
+          "y": 0.8,
+          "w": 0.45,
+          "h": 0.18
+        },
+        {
+          "nome": "rodape",
+          "x": 0.55,
+          "y": 0.85,
+          "w": 0.45,
+          "h": 0.15
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "arquivo": "batata-palha__tradicional-300g.color.png",
+      "mascara": "batata-palha__tradicional-300g.mask.png",
+      "sha256": {
+        "cor": "9585a1871c606f84988f92ca2b7df09b0a1810dc9604f79274e35c922f3beef3",
+        "mascara": "4b9d12ffe3e9656b35e824ef34ea9d632341809706368ebbeff3f63be596db0e"
+      },
+      "destino": "public/products/batata-palha/tradicional-300g",
+      "sku": "bp-tradicional-300g",
+      "confira": "Batata Palha Tradicional Super Crocante 300g — selo ALTO EM presente",
+      "canvas": "1660x2053",
+      "unCx": 16,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.4,
+          "y": 0.93,
+          "w": 0.2,
+          "h": 0.04
+        },
+        "apoio": {
+          "x": 0.2,
+          "y": 0.42,
+          "w": 0.12,
+          "h": 0.06
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.0,
+          "y": 0.05,
+          "w": 0.35,
+          "h": 0.18
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.82,
+          "y": 0.45,
+          "w": 0.18,
+          "h": 0.2
+        },
+        {
+          "nome": "tabela-nutricional",
+          "x": 0.0,
+          "y": 0.8,
+          "w": 0.45,
+          "h": 0.18
+        },
+        {
+          "nome": "rodape",
+          "x": 0.55,
+          "y": 0.85,
+          "w": 0.45,
+          "h": 0.15
+        }
+      ]
+    },
+    {
+      "n": 17,
+      "arquivo": "batata-palha__tradicional-800g.color.png",
+      "mascara": "batata-palha__tradicional-800g.mask.png",
+      "sha256": {
+        "cor": "becd64ac07c5005ebbac392f48413a974fdad0495ea95d3826d9d439483383e0",
+        "mascara": "ac6842e2b36f1917b7844f28eb34d4255cfdb4a980c1c21c6c2da52424ecc750"
+      },
+      "destino": "public/products/batata-palha/tradicional-800g",
+      "sku": "fs-tradicional-800g",
+      "confira": "Batata Palha Tradicional Super Crocante 800g — selo ALTO EM presente",
+      "canvas": "1515x2199",
+      "unCx": 8,
+      "canal": "atacado-foodservice",
+      "amostra": {
+        "base": {
+          "x": 0.4,
+          "y": 0.93,
+          "w": 0.2,
+          "h": 0.04
+        },
+        "apoio": {
+          "x": 0.2,
+          "y": 0.42,
+          "w": 0.12,
+          "h": 0.06
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.0,
+          "y": 0.05,
+          "w": 0.35,
+          "h": 0.18
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.82,
+          "y": 0.45,
+          "w": 0.18,
+          "h": 0.2
+        },
+        {
+          "nome": "tabela-nutricional",
+          "x": 0.0,
+          "y": 0.8,
+          "w": 0.45,
+          "h": 0.18
+        },
+        {
+          "nome": "rodape",
+          "x": 0.55,
+          "y": 0.85,
+          "w": 0.45,
+          "h": 0.15
+        }
+      ]
+    },
+    {
+      "n": 18,
+      "arquivo": "krisps__cebola-salsa-45g.color.png",
+      "mascara": "krisps__cebola-salsa-45g.mask.png",
+      "sha256": {
+        "cor": "4085829b7a11124f8cefcca81c255bbb890574c53ae37212b32107cb5dbe0787",
+        "mascara": "b6a487d4d9ee461c1c98a71bf877689ed8bed5f3a100d41c414476d8325d1ecc"
+      },
+      "destino": "public/products/krisps/cebola-salsa-45g",
+      "sku": "krisps-cebola-salsa-45g",
+      "confira": "Krisp's Ondulada Cebola & Salsa 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": 24,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.3,
+          "y": 0.2,
+          "w": 0.1,
+          "h": 0.1
+        },
+        "acento": {
+          "x": 0.36,
+          "y": 0.43,
+          "w": 0.3,
+          "h": 0.05
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.6,
+          "y": 0.1,
+          "w": 0.4,
+          "h": 0.2
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.55,
+          "w": 0.2,
+          "h": 0.25
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.35,
+          "y": 0.72,
+          "w": 0.65,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 19,
+      "arquivo": "krisps__churrasco-45g.color.png",
+      "mascara": "krisps__churrasco-45g.mask.png",
+      "sha256": {
+        "cor": "526a13183a44be597b7ff53b379c703f81bff00bae411f013c5abdf8e3348f8f",
+        "mascara": "b6a487d4d9ee461c1c98a71bf877689ed8bed5f3a100d41c414476d8325d1ecc"
+      },
+      "destino": "public/products/krisps/churrasco-45g",
+      "sku": "krisps-churrasco-45g",
+      "confira": "Krisp's Ondulada Churrasco 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": 24,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.3,
+          "y": 0.2,
+          "w": 0.1,
+          "h": 0.1
+        },
+        "acento": {
+          "x": 0.36,
+          "y": 0.43,
+          "w": 0.3,
+          "h": 0.05
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.6,
+          "y": 0.1,
+          "w": 0.4,
+          "h": 0.2
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.55,
+          "w": 0.2,
+          "h": 0.25
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.35,
+          "y": 0.72,
+          "w": 0.65,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 20,
+      "arquivo": "krisps__original-45g.color.png",
+      "mascara": "krisps__original-45g.mask.png",
+      "sha256": {
+        "cor": "058b3098ef3bd2b88e6874a1418ddf2a08ab4c1d4d3c810bc640c30190a19f68",
+        "mascara": "b6a487d4d9ee461c1c98a71bf877689ed8bed5f3a100d41c414476d8325d1ecc"
+      },
+      "destino": "public/products/krisps/original-45g",
+      "sku": "krisps-original-45g",
+      "confira": "Krisp's Ondulada Original 45g — selo ALTO EM presente",
+      "canvas": "3543x3543",
+      "unCx": 24,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.3,
+          "y": 0.2,
+          "w": 0.1,
+          "h": 0.1
+        },
+        "acento": {
+          "x": 0.36,
+          "y": 0.43,
+          "w": 0.3,
+          "h": 0.05
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.6,
+          "y": 0.1,
+          "w": 0.4,
+          "h": 0.2
+        },
+        {
+          "nome": "imagem-ilustrativa",
+          "x": 0.0,
+          "y": 0.55,
+          "w": 0.2,
+          "h": 0.25
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.35,
+          "y": 0.72,
+          "w": 0.65,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 21,
+      "arquivo": "checkmate-petisco__bacon-50g.color.png",
+      "mascara": "checkmate-petisco__bacon-50g.mask.png",
+      "sha256": {
+        "cor": "2dd420af05b429a01c7d6caab80da4cc47ccb67eb1b2c3f2364dab4b9ed327d1",
+        "mascara": "84517da5fec73572d35bc480be2946bea34dc65677eb88fd7d330ae055b722ed"
+      },
+      "destino": "public/products/checkmate-petisco/bacon-50g",
+      "sku": "checkmate-petisco-bacon-50g",
+      "confira": "Checkmate Petisco Bacon 50g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1268x2284",
+      "unCx": 30,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 22,
+      "arquivo": "checkmate-petisco__queijo-50g.color.png",
+      "mascara": "checkmate-petisco__queijo-50g.mask.png",
+      "sha256": {
+        "cor": "36e251822031a9ec2b6b8284b040047be1ab0eb44038751261dfccd27694cd61",
+        "mascara": "5fcd84f66de77cc2a223dc73aeeef923000d0f256df5757210cbc3f2ea0a3f62"
+      },
+      "destino": "public/products/checkmate-petisco/queijo-50g",
+      "sku": "checkmate-petisco-queijo-50g",
+      "confira": "Checkmate Petisco Queijo 50g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1268x2284",
+      "unCx": 30,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 23,
+      "arquivo": "checkmate-petisco__costelinha-limao-50g.color.png",
+      "mascara": "checkmate-petisco__costelinha-limao-50g.mask.png",
+      "sha256": {
+        "cor": "72453bd8a3b2737f646585111f8a79527e8d67578b0666112f581bddbee648a3",
+        "mascara": "84517da5fec73572d35bc480be2946bea34dc65677eb88fd7d330ae055b722ed"
+      },
+      "destino": "public/products/checkmate-petisco/costelinha-limao-50g",
+      "sku": "checkmate-petisco-costelinha-limao-50g",
+      "confira": "Checkmate Petisco Costelinha com Limão 50g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1268x2284",
+      "unCx": 30,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 24,
+      "arquivo": "checkmate-petisco__pimenta-50g.color.png",
+      "mascara": "checkmate-petisco__pimenta-50g.mask.png",
+      "sha256": {
+        "cor": "fd435bc0d0a930f72b2dd90ef4c64a2cf8eca0a1c2cb8007ed4fdcc5cb318fd4",
+        "mascara": "84517da5fec73572d35bc480be2946bea34dc65677eb88fd7d330ae055b722ed"
+      },
+      "destino": "public/products/checkmate-petisco/pimenta-50g",
+      "sku": "checkmate-petisco-pimenta-50g",
+      "confira": "Checkmate Petisco Pimenta 50g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1268x2284",
+      "unCx": 30,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 25,
+      "arquivo": "checkmate-petisco__cebola-salsa-50g.color.png",
+      "mascara": "checkmate-petisco__cebola-salsa-50g.mask.png",
+      "sha256": {
+        "cor": "088b210b676b66e7f74ad56b94f74868e7e378d1d297fada92abbbec48447a06",
+        "mascara": "47e17c09e2110fab39364b9d06c9438000702fe96c82262c77c4d679a2608d25"
+      },
+      "destino": "public/products/checkmate-petisco/cebola-salsa-50g",
+      "sku": "checkmate-petisco-cebola-salsa-50g",
+      "confira": "Checkmate Petisco Cebola e Salsa 50g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1268x2284",
+      "unCx": 30,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 26,
+      "arquivo": "checkmate-petisco__churrasco-50g.color.png",
+      "mascara": "checkmate-petisco__churrasco-50g.mask.png",
+      "sha256": {
+        "cor": "20a24353dd61dab287c1f42f1aa788590e1943754305e4cda94d70b3a61ac7f3",
+        "mascara": "ebbd89e9d306bb9bd6edfa31f1bf1e2caceb471f6c7cbaf744005a926e0c8b88"
+      },
+      "destino": "public/products/checkmate-petisco/churrasco-50g",
+      "sku": "checkmate-petisco-churrasco-50g",
+      "confira": "Checkmate Petisco Churrasco 50g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1268x2284",
+      "unCx": 30,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 27,
+      "arquivo": "checkmate-skin__bacon-40g.color.png",
+      "mascara": "checkmate-skin__bacon-40g.mask.png",
+      "sha256": {
+        "cor": "13547ee07593fdd5331b74f5164639bb196f3061e0c8996abc32d27c7bd02c3f",
+        "mascara": "8172ee08b65fdd37b04dadcb25e7b8afd7bbbee120711d513b4a40c433f86415"
+      },
+      "destino": "public/products/checkmate-skin/bacon-40g",
+      "sku": "checkmate-skin-bacon-40g",
+      "confira": "Checkmate Skin Bacon 40g — selo ALTO EM presente",
+      "canvas": "1484x2152",
+      "unCx": 20,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.4,
+          "y": 0.02,
+          "w": 0.5,
+          "h": 0.06
+        },
+        "apoio": {
+          "x": 0.1,
+          "y": 0.82,
+          "w": 0.25,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.7,
+          "y": 0.05,
+          "w": 0.3,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.8,
+          "w": 1.0,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 28,
+      "arquivo": "checkmate-skin__costelinha-barbecue-40g.color.png",
+      "mascara": "checkmate-skin__costelinha-barbecue-40g.mask.png",
+      "sha256": {
+        "cor": "fcac3f17a0bdba10ba5bd17baed7ac1e1bcccf70418544394254ed0997b670b2",
+        "mascara": "9e3c75fa9d4893cec45c4c5da08c76c8239ce1d22fc412903110e814f06d8b7c"
+      },
+      "destino": "public/products/checkmate-skin/costelinha-barbecue-40g",
+      "sku": "checkmate-skin-costelinha-barbecue-40g",
+      "confira": "Checkmate Skin Costelinha com Barbecue 40g — selo ALTO EM presente",
+      "canvas": "1484x2152",
+      "unCx": 20,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.4,
+          "y": 0.02,
+          "w": 0.5,
+          "h": 0.06
+        },
+        "apoio": {
+          "x": 0.1,
+          "y": 0.82,
+          "w": 0.25,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.7,
+          "y": 0.05,
+          "w": 0.3,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.8,
+          "w": 1.0,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 29,
+      "arquivo": "checkmate-skin__costelinha-limao-40g.color.png",
+      "mascara": "checkmate-skin__costelinha-limao-40g.mask.png",
+      "sha256": {
+        "cor": "1239582e5d50e3b36a49f1fc8b1b1bf9bc268f41c892cd5989d58393ea70f9bc",
+        "mascara": "8172ee08b65fdd37b04dadcb25e7b8afd7bbbee120711d513b4a40c433f86415"
+      },
+      "destino": "public/products/checkmate-skin/costelinha-limao-40g",
+      "sku": "checkmate-skin-costelinha-limao-40g",
+      "confira": "Checkmate Skin Costelinha com Limão 40g — selo ALTO EM presente",
+      "canvas": "1484x2152",
+      "unCx": 20,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.4,
+          "y": 0.02,
+          "w": 0.5,
+          "h": 0.06
+        },
+        "apoio": {
+          "x": 0.1,
+          "y": 0.82,
+          "w": 0.25,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "selo-alto-em-gordura-saturada",
+          "x": 0.7,
+          "y": 0.05,
+          "w": 0.3,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.8,
+          "w": 1.0,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 30,
+      "arquivo": "batata-palha__extrafina-100g.color.png",
+      "mascara": "batata-palha__extrafina-100g.mask.png",
+      "sha256": {
+        "cor": "38d1ee1c8c59f4abdb23e9da3341c7e55c9aa457f2f4344b72e79474a65728f2",
+        "mascara": "7303ab447a014113dc9bac1723263e0617a151ac7eefa7c6ee3a2b9536868840"
+      },
+      "destino": "public/products/batata-palha/extrafina-100g",
+      "sku": "bp-extrafina-100g",
+      "confira": "Batata Palha Extrafina Gourmet 100g (pouch) — selo ALTO EM presente",
+      "canvas": "1554x2458",
+      "unCx": 40,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.25,
+          "y": 0.1,
+          "w": 0.2,
+          "h": 0.05
+        },
+        "apoio": {
+          "x": 0.02,
+          "y": 0.3,
+          "w": 0.1,
+          "h": 0.1
+        }
+      },
+      "verificar": [
+        {
+          "nome": "faixa-topo-e-selo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.22
+        },
+        {
+          "nome": "imagens-ilustrativas",
+          "x": 0.2,
+          "y": 0.8,
+          "w": 0.15,
+          "h": 0.15
+        },
+        {
+          "nome": "rodape",
+          "x": 0.3,
+          "y": 0.85,
+          "w": 0.4,
+          "h": 0.15
+        }
+      ]
+    },
+    {
+      "n": 31,
+      "arquivo": "batata-palha__temperada-100g.color.png",
+      "mascara": "batata-palha__temperada-100g.mask.png",
+      "sha256": {
+        "cor": "b01377ac32c987f4e1b15f9efb1117b2492bff9380320fb3b2e3e3347e244cd0",
+        "mascara": "f77cb5003eb96ffc2e4da3a6312bf88efeccea5b32fad4836ffe8115414e2daa"
+      },
+      "destino": "public/products/batata-palha/temperada-100g",
+      "sku": "bp-temperada-100g",
+      "confira": "Batata Palha Extrafina Temperada Cebola e Salsa 100g (pouch) — selo ALTO EM presente",
+      "canvas": "1558x2451",
+      "unCx": 40,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.25,
+          "y": 0.1,
+          "w": 0.2,
+          "h": 0.05
+        },
+        "apoio": {
+          "x": 0.02,
+          "y": 0.3,
+          "w": 0.1,
+          "h": 0.1
+        }
+      },
+      "verificar": [
+        {
+          "nome": "faixa-topo-e-selo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.22
+        },
+        {
+          "nome": "imagens-ilustrativas",
+          "x": 0.2,
+          "y": 0.8,
+          "w": 0.15,
+          "h": 0.15
+        },
+        {
+          "nome": "rodape",
+          "x": 0.3,
+          "y": 0.85,
+          "w": 0.4,
+          "h": 0.15
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "arquivo": "batata-palha__zero-sodio-100g.color.png",
+      "mascara": "batata-palha__zero-sodio-100g.mask.png",
+      "sha256": {
+        "cor": "832dafeb8f2fb4644b62290548e1d427efbd8abb7420e4666a25e2a71ac6ad69",
+        "mascara": "2b844eea2fe2e43bd59642394398fdc8cab524260f166b4033e1abc53c0922db"
+      },
+      "destino": "public/products/batata-palha/zero-sodio-100g",
+      "sku": "bp-zero-sodio-100g",
+      "confira": "Batata Palha Extrafina Zero Sódio 100g (pouch) — 'Zero adição de sal*' / '*Contém sódio próprio dos ingredientes.' — selo ALTO EM presente",
+      "canvas": "1558x2451",
+      "unCx": 40,
+      "canal": "varejo",
+      "amostra": {
+        "x": 0.25,
+        "y": 0.1,
+        "w": 0.2,
+        "h": 0.05
+      },
+      "verificar": [
+        {
+          "nome": "faixa-topo-e-selo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.22
+        },
+        {
+          "nome": "imagens-ilustrativas",
+          "x": 0.2,
+          "y": 0.8,
+          "w": 0.15,
+          "h": 0.15
+        },
+        {
+          "nome": "nota-sodio-e-rodape",
+          "x": 0.3,
+          "y": 0.8,
+          "w": 0.5,
+          "h": 0.2
+        }
+      ]
+    },
+    {
+      "n": 33,
+      "arquivo": "batata-palha__tradicional-100g.color.png",
+      "mascara": "batata-palha__tradicional-100g.mask.png",
+      "sha256": {
+        "cor": "8879c0922b3ee6dcebef7ab6e6f69a4fff17e0c534fb64cdde2f89d7ee8ad3d9",
+        "mascara": "883cf824b52836a5606f937737a6269ecdd83b9cf1eb334e421f5bc917ae3f51"
+      },
+      "destino": "public/products/batata-palha/tradicional-100g",
+      "sku": "bp-tradicional-100g",
+      "confira": "Batata Palha Tradicional 100g (pouch) — selo ALTO EM presente",
+      "canvas": "1558x2451",
+      "unCx": 40,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.25,
+          "y": 0.1,
+          "w": 0.2,
+          "h": 0.05
+        },
+        "apoio": {
+          "x": 0.02,
+          "y": 0.3,
+          "w": 0.1,
+          "h": 0.1
+        }
+      },
+      "verificar": [
+        {
+          "nome": "faixa-topo-e-selo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.22
+        },
+        {
+          "nome": "imagens-ilustrativas",
+          "x": 0.2,
+          "y": 0.8,
+          "w": 0.15,
+          "h": 0.15
+        },
+        {
+          "nome": "rodape",
+          "x": 0.3,
+          "y": 0.85,
+          "w": 0.4,
+          "h": 0.15
+        }
+      ]
+    },
+    {
+      "n": 34,
+      "arquivo": "checkmate-petisco__queijo-100g.color.png",
+      "mascara": "checkmate-petisco__queijo-100g.mask.png",
+      "sha256": {
+        "cor": "1c7cfc1acafae78cc0e942d1e087e8448ce6e5856aae66bf8898bb1d5c201f18",
+        "mascara": "75f8e7d847ef5c5b4f6d4f223049b3fcfaaa8dacc5f1d913b763d5d5d260001c"
+      },
+      "destino": "public/products/checkmate-petisco/queijo-100g",
+      "sku": "checkmate-petisco-queijo-100g",
+      "confira": "Checkmate Petisco Queijo 100g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1267x2284",
+      "unCx": 25,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 35,
+      "arquivo": "checkmate-petisco__churrasco-100g.color.png",
+      "mascara": "checkmate-petisco__churrasco-100g.mask.png",
+      "sha256": {
+        "cor": "913c8dd4a6360b6a2cf2ba414dfec0f47e33441c0b04b0ac17958f01442f3bfd",
+        "mascara": "b9dd961982af05162337e55588bd19773325680c49cfcadc013d5709c7f45b55"
+      },
+      "destino": "public/products/checkmate-petisco/churrasco-100g",
+      "sku": "checkmate-petisco-churrasco-100g",
+      "confira": "Checkmate Petisco Churrasco 100g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1267x2284",
+      "unCx": 25,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 36,
+      "arquivo": "checkmate-petisco__cebola-salsa-100g.color.png",
+      "mascara": "checkmate-petisco__cebola-salsa-100g.mask.png",
+      "sha256": {
+        "cor": "abdc0ac3fdd8a59d497a010d9db85314b8a929b5937b0d86cba99d041c2ebce8",
+        "mascara": "b9dd961982af05162337e55588bd19773325680c49cfcadc013d5709c7f45b55"
+      },
+      "destino": "public/products/checkmate-petisco/cebola-salsa-100g",
+      "sku": "checkmate-petisco-cebola-salsa-100g",
+      "confira": "Checkmate Petisco Cebola e Salsa 100g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1267x2284",
+      "unCx": 25,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 37,
+      "arquivo": "checkmate-petisco__pimenta-100g.color.png",
+      "mascara": "checkmate-petisco__pimenta-100g.mask.png",
+      "sha256": {
+        "cor": "84a9edc2af34e64ad95fd093284a4aaf3867bc0c3b3585b0bdf81b81a6a0de4f",
+        "mascara": "3c52f9035b80fb0cc20cd94ac7c28f3cc23e56902bc652b42b156904a0e91186"
+      },
+      "destino": "public/products/checkmate-petisco/pimenta-100g",
+      "sku": "checkmate-petisco-pimenta-100g",
+      "confira": "Checkmate Petisco Pimenta 100g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1267x2284",
+      "unCx": 25,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 38,
+      "arquivo": "checkmate-petisco__bacon-100g.color.png",
+      "mascara": "checkmate-petisco__bacon-100g.mask.png",
+      "sha256": {
+        "cor": "e4a4a448df02aa963113438cc907abed157c4f3d674a765e4f71b4918c21d37c",
+        "mascara": "ee867c238c03ce0f8b42cf4350f129bb141971a456c1ab55ce51a3a9ae3f1f29"
+      },
+      "destino": "public/products/checkmate-petisco/bacon-100g",
+      "sku": "checkmate-petisco-bacon-100g",
+      "confira": "Checkmate Petisco Bacon 100g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1267x2284",
+      "unCx": 25,
+      "canal": "varejo",
+      "amostra": {
+        "base": {
+          "x": 0.45,
+          "y": 0.02,
+          "w": 0.45,
+          "h": 0.07
+        },
+        "acento": {
+          "x": 0.1,
+          "y": 0.8,
+          "w": 0.3,
+          "h": 0.03
+        }
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape-novo-peso",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    },
+    {
+      "n": 39,
+      "arquivo": "checkmate-petisco__costelinha-limao-100g.color.png",
+      "mascara": "checkmate-petisco__costelinha-limao-100g.mask.png",
+      "sha256": {
+        "cor": "85f19ac0a8f13113c98233522737b588e7b87e60984dbfc38ac2d1bc6c3c12c9",
+        "mascara": "3c52f9035b80fb0cc20cd94ac7c28f3cc23e56902bc652b42b156904a0e91186"
+      },
+      "destino": "public/products/checkmate-petisco/costelinha-limao-100g",
+      "sku": "checkmate-petisco-costelinha-limao-100g",
+      "confira": "Checkmate Petisco Costelinha com Limão 100g — SEM selo ALTO EM (não adicionar)",
+      "canvas": "1267x2284",
+      "unCx": 25,
+      "canal": "varejo",
+      "amostra": {
+        "x": 0.45,
+        "y": 0.02,
+        "w": 0.45,
+        "h": 0.07
+      },
+      "verificar": [
+        {
+          "nome": "topo",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 1.0,
+          "h": 0.2
+        },
+        {
+          "nome": "rodape",
+          "x": 0.0,
+          "y": 0.78,
+          "w": 1.0,
+          "h": 0.22
+        }
+      ]
+    }
+  ]
+}

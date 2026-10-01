@@ -2,6 +2,7 @@
  * Logo oficial → arquivos do site (lote 1B).
  *
  *   npm run images:logo -- assets/incoming/lote-01/logo-alianca-alimentos.png
+ *   npm run images:logo -- <cor.png> <mascara.png>   # original do Canva: RGB + máscara (alfa)
  *
  * Gera, sem alterar o original:
  *  - assets/source/logo-alianca-original.<ext>   cópia byte a byte
@@ -18,11 +19,27 @@ import { extname, join, resolve } from "node:path";
 import sharp from "sharp";
 
 const ROOT = resolve(import.meta.dirname, "..");
-const origem = process.argv[2] && resolve(ROOT, process.argv[2]);
-if (!origem || !existsSync(origem)) {
-  console.error("Uso: npm run images:logo -- <arquivo da logo>  (arquivo não encontrado)");
+const arqCor = process.argv[2] && resolve(ROOT, process.argv[2]);
+const arqMascara = process.argv[3] && resolve(ROOT, process.argv[3]);
+if (!arqCor || !existsSync(arqCor) || (arqMascara && !existsSync(arqMascara))) {
+  console.error("Uso: npm run images:logo -- <arquivo da logo> [máscara]  (arquivo não encontrado)");
   process.exit(1);
 }
+
+/** Com máscara: compõe o RGBA (cor como RGB, máscara de luminância como alfa) antes de tudo. */
+async function compor(cor: string, mascara: string) {
+  const rgb = await sharp(cor).removeAlpha().toColourspace("srgb").raw().toBuffer({ resolveWithObject: true });
+  const m = await sharp(mascara).removeAlpha().toColourspace("b-w").extractChannel(0).raw().toBuffer({ resolveWithObject: true });
+  const { width: w, height: h } = rgb.info;
+  if (m.info.width !== w || m.info.height !== h) throw new Error(`máscara ${m.info.width}x${m.info.height} ≠ cor ${w}x${h}`);
+  const px = Buffer.alloc(w * h * 4);
+  for (let i = 0; i < w * h; i++) {
+    px.set(rgb.data.subarray(i * 3, i * 3 + 3), i * 4);
+    px[i * 4 + 3] = m.data[i];
+  }
+  return sharp(px, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer();
+}
+const origem: string | Buffer = arqMascara ? await compor(arqCor, arqMascara) : arqCor;
 
 /**
  * Oval da marca, em fração da ÁREA ÚTIL recortada (cx, cy, rx, ry).
@@ -35,8 +52,13 @@ const out = (p: string) => join(ROOT, p);
 for (const d of ["assets/source", "public/brand", ".image-previews"]) mkdirSync(out(d), { recursive: true });
 
 // 1. cópia do original, fora do site
-const copia = `assets/source/logo-alianca-original${extname(origem).toLowerCase()}`;
-copyFileSync(origem, out(copia));
+const copia = `assets/source/logo-alianca-original${arqMascara ? ".color" : ""}${extname(arqCor).toLowerCase()}`;
+copyFileSync(arqCor, out(copia));
+if (arqMascara) {
+  copyFileSync(arqMascara, out(`assets/source/logo-alianca-original.mask${extname(arqMascara).toLowerCase()}`));
+  // RGBA reconstituído (sem perda) — é o que o site usa como fonte
+  writeFileSync(out("assets/source/logo-alianca-original.png"), origem as Buffer);
+}
 
 // 2. verificação de alfa real
 const meta = await sharp(origem).metadata();
@@ -44,7 +66,7 @@ const { data, info } = await sharp(origem).ensureAlpha().raw().toBuffer({ resolv
 const W = info.width, H = info.height;
 const alfa = (x: number, y: number) => data[(y * W + x) * 4 + 3];
 const cantos = [alfa(0, 0), alfa(W - 1, 0), alfa(0, H - 1), alfa(W - 1, H - 1)];
-console.log(`${meta.format} ${W}x${H}, canal alfa: ${meta.hasAlpha ? "sim" : "não"}, alfa nos cantos: ${cantos.join(",")}`);
+console.log(`${meta.format} ${W}x${H}${arqMascara ? " (cor + máscara)" : ""}, canal alfa: ${meta.hasAlpha ? "sim" : "não"}, alfa nos cantos: ${cantos.join(",")}`);
 if (!meta.hasAlpha || cantos.some((a) => a !== 0)) {
   console.error("Fundo não é transparente — parar e avisar (não remover fundo por conta própria).");
   process.exit(1);

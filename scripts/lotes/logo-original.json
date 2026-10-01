@@ -1,0 +1,17 @@
+{
+  "n": 1,
+  "color": {
+    "file": "originais/logo-alianca-original.color.png",
+    "bytes": 96051,
+    "sha256": "b9378029d1586326d0dbffdbed4b5a70c3179b875b45ef2d22650e1b9f9495e8"
+  },
+  "mask": {
+    "file": "originais/logo-alianca-original.mask.png",
+    "bytes": 6664,
+    "sha256": "db416d5b9f86575b4123cf049b179275bf4fc81fb6635a9ca97b37327739b9f9"
+  },
+  "width": 622,
+  "height": 267,
+  "svg_original": "1.svg",
+  "svg_sha256": "693dc3a5313c5a0270d72ce30c1b80f3d39c2941f5804a3f4407e97b77a3d9a7"
+}

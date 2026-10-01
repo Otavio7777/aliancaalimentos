@@ -5,7 +5,11 @@
  *   npm run images:lote -- scripts/lotes/lote-01.json --dry-run   # só valida e amostra cores
  *
  * Para cada item do lote:
- *  1. lê o original em `origem/arquivo` (nunca o altera);
+ *  1. lê o original em `origem/arquivo` (nunca o altera). Se o item tiver
+ *     `mascara` (originais exportados do Canva: PNG de cor RGB + máscara de
+ *     luminância do mesmo tamanho), compõe o RGBA ANTES de tudo — cor como
+ *     RGB, máscara como canal alfa — e só então faz trim e WebP. Se o item
+ *     tiver `sha256`, confere os bytes dos dois arquivos antes de processar;
  *  2. encontra a área útil (pixels não transparentes — ou diferentes do fundo,
  *     se o canvas for opaco) e recorta com ~2% de margem de segurança,
  *     preservando o canal alfa;
@@ -27,6 +31,7 @@
  * Roda direto no Node ≥ 22.18 (type stripping nativo), sem transpilar.
  */
 
+import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import sharp, { type OverlayOptions } from "sharp";
@@ -38,6 +43,9 @@ type Item = {
   destino: string;
   sku: string;
   confira: string;
+  /** máscara de luminância (cinza 8 bits, mesmo tamanho) → canal alfa */
+  mascara?: string;
+  sha256?: { cor: string; mascara?: string };
   /** região única, ou regiões nomeadas (ex.: { base, acento }) */
   amostra?: Regiao | Record<string, Regiao>;
   verificar?: Verificacao[];
@@ -63,10 +71,25 @@ const lote: Lote = JSON.parse(readFileSync(resolve(ROOT, arquivoLote), "utf8"));
 const nomeLote = basename(arquivoLote, ".json");
 
 // Falha cedo: nenhum item é processado se faltar qualquer original.
-const faltando = lote.itens.filter((i) => !existsSync(join(ROOT, lote.origem, i.arquivo)));
+const faltando = lote.itens.flatMap((i) =>
+  [i.arquivo, i.mascara].filter((f): f is string => !!f && !existsSync(join(ROOT, lote.origem, f))),
+);
 if (faltando.length) {
   console.error(`Originais ausentes em ${lote.origem}/ — nada foi processado:`);
-  for (const i of faltando) console.error(`  ✗ ${i.arquivo}`);
+  for (const f of faltando) console.error(`  ✗ ${f}`);
+  process.exit(1);
+}
+
+// Falha cedo também se algum arquivo não bater com o SHA-256 do manifesto.
+const sha = (f: string) => createHash("sha256").update(readFileSync(join(ROOT, lote.origem, f))).digest("hex");
+const divergentes = lote.itens.flatMap((i) => {
+  if (!i.sha256) return [];
+  const pares: [string | undefined, string | undefined][] = [[i.arquivo, i.sha256.cor], [i.mascara, i.sha256.mascara]];
+  return pares.filter(([f, h]) => f && h && sha(f) !== h).map(([f]) => f!);
+});
+if (divergentes.length) {
+  console.error("SHA-256 diferente do manifesto — nada foi processado:");
+  for (const f of divergentes) console.error(`  ✗ ${f}`);
   process.exit(1);
 }
 
@@ -140,14 +163,36 @@ const rotulo = (texto: string, w: number) =>
     `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="40"><rect width="100%" height="100%" fill="#111"/><text x="12" y="27" font-family="sans-serif" font-size="20" fill="#fff">${texto.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text></svg>`,
   );
 
+/** Cor (RGB) + máscara de luminância (cinza) → RGBA bruto. Exige o mesmo tamanho. */
+async function comporComMascara(cor: string, mascara: string) {
+  const rgb = await sharp(cor).removeAlpha().toColourspace("srgb").raw().toBuffer({ resolveWithObject: true });
+  const m = await sharp(mascara).removeAlpha().toColourspace("b-w").extractChannel(0).raw().toBuffer({ resolveWithObject: true });
+  const { width: W, height: H } = rgb.info;
+  if (m.info.width !== W || m.info.height !== H)
+    throw new Error(`máscara ${m.info.width}x${m.info.height} ≠ cor ${W}x${H}: ${basename(mascara)}`);
+  const data = Buffer.alloc(W * H * 4);
+  for (let p = 0; p < W * H; p++) {
+    data[p * 4] = rgb.data[p * 3];
+    data[p * 4 + 1] = rgb.data[p * 3 + 1];
+    data[p * 4 + 2] = rgb.data[p * 3 + 2];
+    data[p * 4 + 3] = m.data[p];
+  }
+  return { data, info: { width: W, height: H } };
+}
+
 async function processar(item: Item) {
   const origem = join(ROOT, lote.origem, item.arquivo);
   const meta = await sharp(origem).metadata();
-  const { data, info } = await sharp(origem).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { data, info } = item.mascara
+    ? await comporComMascara(origem, join(ROOT, lote.origem, item.mascara))
+    : await sharp(origem).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const { width: W, height: H } = info;
   const avisos: string[] = [];
+  const temAlfa = Boolean(item.mascara || meta.hasAlpha);
+  const cantos = [0, W - 1, (H - 1) * W, H * W - 1].map((p) => data[p * 4 + 3]);
 
-  if (!meta.hasAlpha) avisos.push("original sem canal alfa");
+  if (!temAlfa) avisos.push("original sem canal alfa");
+  else if (cantos.some((a) => a > 8)) avisos.push(`alfa nos cantos ≠ 0 (${cantos.join(",")}) — fundo pode não ser transparente`);
   const bb = areaUtil(data, W, H);
   if (bb.opaco) avisos.push(`fundo opaco (${hex(bb.fundo[0], bb.fundo[1], bb.fundo[2])}); recorte feito pela cor do fundo`);
   if (bb.x0 === 0 || bb.y0 === 0 || bb.x1 === W - 1 || bb.y1 === H - 1)
@@ -235,9 +280,11 @@ async function processar(item: Item) {
   return {
     sku: item.sku,
     original: `${lote.origem}/${item.arquivo}`,
+    mascara: item.mascara ? `${lote.origem}/${item.mascara}` : null,
     formato: meta.format,
     canvas: `${W}x${H}`,
-    alfa: Boolean(meta.hasAlpha),
+    alfa: temAlfa,
+    alfaCantos: cantos,
     areaUtil: { x: bb.x0, y: bb.y0, w: cw, h: ch },
     margemPx: m,
     recorte: `${rw}x${rh}`,
@@ -256,7 +303,7 @@ const relatorio = [];
 for (const item of lote.itens) {
   const r = await processar(item);
   relatorio.push(r);
-  console.log(`\n✓ ${r.sku}  (${r.formato} ${r.canvas}${r.alfa ? ", com alfa" : ""})`);
+  console.log(`\n✓ ${r.sku}  (${r.formato} ${r.canvas}${r.mascara ? ", cor + máscara → RGBA" : r.alfa ? ", com alfa" : ""})`);
   console.log(`  área útil ${r.areaUtil.w}x${r.areaUtil.h} + margem ${r.margemPx}px → ${r.recorte}`);
   for (const s of r.saidas) console.log(`  → ${s.arquivo}  ${s.largura}x${s.altura}  ${s.kb} KB${dryRun ? " (dry-run)" : ""}`);
   for (const [nome, c] of Object.entries(r.cores))

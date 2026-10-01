@@ -74,3 +74,11 @@ Status arquivo a arquivo em `docs/assets-manifest.md`.
 - [ ] Textos de marketing (headlines e chamadas) — tom e aprovação da marca
 - [ ] Perfis de revenda e tipos de negócio do formulário
 - [ ] Informações nutricionais/ingredientes **não** foram publicadas (sem fonte); decidir se entram nas páginas de linha
+
+## Originais 1–39 (cor + máscara) — aguardando arquivos
+
+- Roteiro pronto: `scripts/lotes/originais.json` (38 SKUs, gerado do `manifesto-originais.json`; substitui `lote-01..03.json`). Logo: `scripts/lotes/logo-original.json`.
+- O pipeline (`npm run images:lote`) agora compõe RGBA (PNG de cor + máscara de luminância como alfa) **antes** do trim e do WebP e confere o SHA-256 de cada arquivo; para se faltar algum arquivo ou se algum hash divergir.
+- **Bloqueio:** os 78 PNGs (`<destino>.color.png` / `.mask.png`) ainda não estão em `assets/incoming/originais/`. Imagens coladas no chat não servem (chegam recomprimidas, sem SHA-256 verificável). Até lá, as fotos dos lotes 1–3 seguem marcadas como baixa qualidade.
+- Logo (nº 1): raster 622×267 com alfa real via máscara — **menor que 1200 px**; não há vetor. `OVAL` em `scripts/process-logo.ts` foi medido na logo anterior (2000×1414) e precisa ser remedido no novo arquivo antes de gerar `icon.png`/`favicon.ico`.
+- Novos SKUs a criar em `data/products.ts` quando as fotos chegarem: Chips Lisa Costelinha com Barbecue 45g, Cheddar e Bacon 45g/150g, Frango Grelhado 150g (seletor com 10 sabores/gramaturas).
