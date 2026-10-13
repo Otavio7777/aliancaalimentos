@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { Pack } from "@/components/Pack";
+import { Faq } from "@/components/Faq";
+import { LineCarousel } from "@/components/LineCarousel";
+import { Marquee } from "@/components/Marquee";
 import { Showcase } from "@/components/Showcase";
+import { VersionToggle } from "@/components/VersionToggle";
 import { linhas, produtoPorId, produtos } from "@/data/catalogo";
 
 export default function Home() {
@@ -10,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Showcase />
+      <Marquee />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6" aria-labelledby="t-linhas">
         <p className="font-extrabold text-muted">Produtos</p>
@@ -39,6 +44,10 @@ export default function Home() {
         </ol>
         <Link href="/produtos" className="btn btn-solid mt-8">Ver os {produtos.length} produtos</Link>
       </section>
+
+      <LineCarousel slug="batata-palha" />
+      <VersionToggle />
+      <LineCarousel slug="checkmate-petisco" />
 
       <section className="border-y-[3px] border-ink bg-mustard" aria-labelledby="t-fs">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1.1fr_1fr]">
@@ -75,6 +84,7 @@ export default function Home() {
         </ol>
       </section>
 
+      <Faq />
       <CtaBand titulo="Quer Aliança no seu negócio?" cor="#C8102E" />
     </>
   );

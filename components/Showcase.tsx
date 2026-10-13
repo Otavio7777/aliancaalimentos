@@ -1,14 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { linhas, produtoPorId, produtosDaLinha, caixaTexto, type Linha } from "@/data/catalogo";
 import { Pack } from "./Pack";
 
 const hrefLinha = (l: Linha) => (l.slug === "food-service" ? "/food-service" : `/produtos/${l.slug}`);
 
+const INTERVALO = 5000;
+
 export function Showcase() {
   const [i, setI] = useState(0);
+  const [pausadoUsuario, setPausadoUsuario] = useState(false);
+  const [emFoco, setEmFoco] = useState(false);
+  const [semMovimento, setSemMovimento] = useState(false);
+  const [ciclo, setCiclo] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const [visivel, setVisivel] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setSemMovimento(mq.matches);
+    const f = () => setSemMovimento(mq.matches);
+    mq.addEventListener("change", f);
+    return () => mq.removeEventListener("change", f);
+  }, []);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([e]) => setVisivel(e.isIntersecting), { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const rodando = !pausadoUsuario && !emFoco && !semMovimento && visivel;
+
+  useEffect(() => {
+    if (!rodando) return;
+    const t = window.setTimeout(() => setI((n) => (n + 1) % linhas.length), INTERVALO);
+    return () => window.clearTimeout(t);
+  }, [rodando, i, ciclo]);
   const l = linhas[i];
   const capa = produtoPorId(l.capa)!;
   const itens = produtosDaLinha(l.slug);
@@ -22,10 +54,25 @@ export function Showcase() {
     "--t-acc-ink": l.destaqueTinta,
   } as React.CSSProperties;
 
-  const ir = (n: number) => setI((n + linhas.length) % linhas.length);
+  const ir = (n: number) => {
+    setI((n + linhas.length) % linhas.length);
+    setCiclo((c) => c + 1);
+  };
 
   return (
-    <section style={style} className="relative overflow-hidden bg-t-bg text-t-ink transition-colors duration-500" aria-label="Linhas Aliança">
+    <section
+      ref={ref}
+      style={style}
+      className="relative overflow-hidden bg-t-bg text-t-ink transition-colors duration-500"
+      aria-roledescription="carrossel"
+      aria-label="Linhas Aliança"
+      onMouseEnter={() => setEmFoco(true)}
+      onMouseLeave={() => setEmFoco(false)}
+      onFocus={() => setEmFoco(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setEmFoco(false);
+      }}
+    >
       <span className="wordmark-bg hidden lg:block" aria-hidden="true">
         {l.curto}
       </span>
@@ -40,7 +87,7 @@ export function Showcase() {
               aria-selected={k === i}
               aria-controls="vitrine"
               tabIndex={k === i ? 0 : -1}
-              onClick={() => setI(k)}
+              onClick={() => ir(k)}
               onKeyDown={(e) => {
                 if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
                   const n = e.key === "ArrowRight" ? k + 1 : k - 1;
@@ -48,9 +95,17 @@ export function Showcase() {
                   document.getElementById(`tab-${linhas[(n + linhas.length) % linhas.length].slug}`)?.focus();
                 }
               }}
-              className="rounded-full border-2 border-current px-4 py-2 text-sm font-extrabold opacity-90 transition-colors hover:opacity-100 aria-selected:bg-t-ink aria-selected:text-t-bg aria-selected:opacity-100"
+              className="relative overflow-hidden rounded-full border-2 border-current px-4 py-2 text-sm font-extrabold opacity-90 transition-colors hover:opacity-100 aria-selected:bg-t-ink aria-selected:text-t-bg aria-selected:opacity-100"
             >
               {x.curto}
+              {k === i && rodando && (
+                <span
+                  key={`${i}-${ciclo}`}
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-0 h-1 bg-t-acc"
+                  style={{ animation: `progresso ${INTERVALO}ms linear forwards` }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -95,7 +150,20 @@ export function Showcase() {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-end gap-2">
+        <div className="mt-6 flex items-center justify-end gap-2">
+          {!semMovimento && (
+            <button
+              type="button"
+              onClick={() => setPausadoUsuario((v) => !v)}
+              className="mr-auto rounded-full border-2 border-current px-4 py-2 text-sm font-extrabold"
+              aria-pressed={pausadoUsuario}
+            >
+              {pausadoUsuario ? "▶ Retomar" : "❚❚ Pausar"}
+            </button>
+          )}
+          <span className="mr-2 text-sm font-bold opacity-80" aria-live={rodando ? "off" : "polite"}>
+            {i + 1} / {linhas.length}
+          </span>
           <button type="button" onClick={() => ir(i - 1)} className="grid size-11 place-items-center rounded-full border-2 border-current" aria-label="Linha anterior">
             ←
           </button>
@@ -104,7 +172,7 @@ export function Showcase() {
           </button>
         </div>
       </div>
-      <style>{`@keyframes entra{from{opacity:0;transform:translateY(18px) rotate(2deg)}to{opacity:1;transform:none}}`}</style>
+      <style>{`@keyframes entra{from{opacity:0;transform:translateY(18px) rotate(2deg)}to{opacity:1;transform:none}}@keyframes progresso{from{width:0}to{width:100%}}`}</style>
     </section>
   );
 }
