@@ -1,230 +1,119 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { ChipsLisaHero } from "@/components/ChipsLisaHero";
-import { JsonLd } from "@/components/JsonLd";
-import { PackShot } from "@/components/PackShot";
+import { notFound, redirect } from "next/navigation";
+import { CtaBand } from "@/components/CtaBand";
+import { Pack } from "@/components/Pack";
 import { ProductCard } from "@/components/ProductCard";
-import { Reveal } from "@/components/Reveal";
-import { ButtonLink, Container, Eyebrow } from "@/components/ui";
-import { agruparPorGrupo, categorias, getLinha, linhas, produtosDaLinha, type Produto } from "@/data/products";
+import { canalTexto, linhaPorSlug, linhas, nomeProduto, produtosDaLinha, type Produto } from "@/data/catalogo";
 import { site } from "@/lib/site";
 
-type Props = { params: Promise<{ linha: string }> };
-
-const marca = (slug: string) => (slug === "krisps" ? "Krisp's" : slug === "checkmate" ? "Checkmate" : "Aliança");
-const canal = (p: Produto) => (p.categoria ? categorias[p.categoria] : "Consulte-nos");
-const caixaGrupo = (p: Produto) =>
-  p.unidadesPorCaixa == null ? "un/cx: consulte-nos" : `caixa com ${p.unidadesPorCaixa} unidades`;
-
 export function generateStaticParams() {
-  return linhas.map((l) => ({ linha: l.slug }));
+  return linhas.filter((l) => l.slug !== "food-service").map((l) => ({ linha: l.slug }));
 }
 
-export const dynamicParams = false;
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const linha = getLinha((await params).linha);
-  if (!linha) return {};
-  return {
-    title: linha.nome,
-    description: `${linha.chamada} ${linha.descricao}`,
-    alternates: { canonical: `/produtos/${linha.slug}` },
-    openGraph: { title: `${linha.nome} | Aliança Alimentos`, description: linha.descricao, images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Logo Aliança Alimentos" }] },
-  };
+export async function generateMetadata({ params }: { params: Promise<{ linha: string }> }): Promise<Metadata> {
+  const l = linhaPorSlug((await params).linha);
+  if (!l) return {};
+  return { title: l.nome, description: `${l.slogan} ${l.descricao}`, alternates: { canonical: `/produtos/${l.slug}` } };
 }
 
-export default async function LinhaPage({ params }: Props) {
-  const linha = getLinha((await params).linha);
-  if (!linha) notFound();
+/** Agrupa como no catálogo: um bloco por embalagem/peso. */
+function grupos(itens: Produto[]) {
+  const m = new Map<string, Produto[]>();
+  for (const p of itens) {
+    const k = p.embalagem || `${p.gramatura}g`;
+    m.set(k, [...(m.get(k) ?? []), p]);
+  }
+  return [...m.entries()];
+}
 
-  const itens = produtosDaLinha(linha.slug);
-  const grupos = agruparPorGrupo(itens);
-  const heroItens = itens.slice(0, 3);
-  const titleFont = linha.fonteTitulo === "serif" ? "font-serif" : "font-condensed uppercase";
+export default async function LinhaPage({ params }: { params: Promise<{ linha: string }> }) {
+  const { linha } = await params;
+  if (linha === "food-service") redirect("/food-service");
+  const l = linhaPorSlug(linha);
+  if (!l) notFound();
+  const itens = produtosDaLinha(l.slug);
+  const fan = itens.filter((_, k) => k % Math.max(1, Math.floor(itens.length / 5)) === 0).slice(0, 5);
 
-  const jsonLd = {
+  const ld = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: linha.nome,
-    itemListElement: itens.map((p, i) => ({
+    name: l.nome,
+    itemListElement: itens.map((p, k) => ({
       "@type": "ListItem",
-      position: i + 1,
+      position: k + 1,
       item: {
         "@type": "Product",
-        sku: p.id,
-        name: `${p.nome} ${p.sabor} ${p.gramatura}`,
-        ...(p.categoria ? { category: categorias[p.categoria] } : {}),
-        brand: { "@type": "Brand", name: marca(linha.slug) },
-        manufacturer: { "@type": "Organization", name: site.nome },
-        weight: { "@type": "QuantitativeValue", value: p.gramas, unitCode: "GRM" },
-        url: `${site.url}/produtos/${linha.slug}#${p.id}`,
-        ...(p.imagem ? { image: `${site.url}${p.imagem}` } : {}),
+        name: nomeProduto(p),
+        image: `${site.url}${p.imagem}`,
+        brand: { "@type": "Brand", name: l.nome.includes("Checkmate") ? "Checkmate" : l.nome.includes("Krisp") ? "Krisp's" : "Aliança" },
+        weight: { "@type": "QuantitativeValue", value: p.gramatura, unitCode: "GRM" },
       },
     })),
   };
 
   return (
-    <div style={{ ["--theme" as string]: linha.cor.bg, ["--theme-ink" as string]: linha.cor.ink }}>
-      {linha.slug === "batata-chips-lisa" ? (
-        <ChipsLisaHero linha={linha} itens={itens} />
-      ) : (
-        <section
-          data-theme={linha.cor.bg}
-          data-theme-ink={linha.cor.ink}
-          className="juta relative isolate overflow-hidden"
-          style={{ backgroundColor: linha.cor.bg, color: linha.cor.ink }}
-          aria-labelledby="linha-title"
-        >
-          {linha.slug === "checkmate" && (
-            <span
-              aria-hidden="true"
-              className="text-vertical pointer-events-none absolute right-0 top-0 -z-10 h-full select-none font-condensed text-[5rem] leading-none opacity-10 sm:text-[7.5rem]"
-            >
-              CHECKMATE
-            </span>
-          )}
-          <Container className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr]">
-            <div>
-              <nav aria-label="Trilha" className="text-sm opacity-85">
-                <Link href="/produtos" className="underline-offset-4 hover:underline">
-                  Produtos
-                </Link>{" "}
-                / <span aria-current="page">{linha.titulo}</span>
-              </nav>
-              <h1 id="linha-title" className={`mt-4 text-5xl leading-none sm:text-7xl ${titleFont}`}>
-                {linha.nome}
-              </h1>
-              <p className="mt-5 font-script text-2xl sm:text-3xl" style={{ color: linha.acento }}>
-                {linha.chamada}
-              </p>
-              <p className="mt-4 max-w-xl text-lg opacity-95">{linha.descricao}</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href={`/revenda?interesse=${linha.slug}#formulario`}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-bold transition hover:brightness-95"
-                  style={{ backgroundColor: linha.cor.ink, color: linha.cor.bg }}
-                >
-                  Solicitar cotação
-                </Link>
-                <a
-                  href="#skus"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-bold ring-2 ring-inset ring-current transition hover:bg-black/10"
-                >
-                  Ver {itens.length} itens
-                </a>
-              </div>
-            </div>
-            <div className="relative mx-auto flex w-full max-w-md items-end justify-center">
-              {heroItens.map((p, i) => (
-                <div
-                  key={p.id}
-                  className={i === 1 ? "z-10 w-[44%]" : "w-[34%] opacity-95"}
-                  style={{ transform: `rotate(${(i - 1) * 8}deg) translateY(${i === 1 ? 0 : 16}px)` }}
-                >
-                  <PackShot produto={p} priority={i === 1} sizes="25vw" />
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
-
-      <section id="skus" aria-labelledby="skus-title" className="bg-offwhite py-14 sm:py-20">
-        <Container>
-          <Eyebrow className="text-ink/70">Portfólio</Eyebrow>
-          <h2 id="skus-title" className="mt-2 font-serif text-4xl">
-            Itens e embalagens
-          </h2>
-
-          {grupos.map(([grupo, lista]) => (
-            <div key={grupo} className="mt-12">
-              <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-4 pb-3" style={{ borderColor: linha.cor.bg }}>
-                <h3 className="font-condensed text-3xl uppercase">{grupo}</h3>
-                <p className="text-sm font-semibold text-ink/75">
-                  {lista[0].gramatura} · {caixaGrupo(lista[0])} · {lista[0].categoria ? categorias[lista[0].categoria] : "canal: consulte-nos"}
-                </p>
-              </div>
-              <ul className="mt-6 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-                {lista.map((p, i) => (
-                  <Reveal as="li" key={p.id} delay={i * 0.04}>
-                    <div id={p.id} className="h-full scroll-mt-28">
-                      <ProductCard produto={p} headingLevel="h4" />
-                    </div>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          <div className="mt-16 overflow-x-auto rounded-2xl ring-1 ring-black/10">
-            <table className="w-full min-w-[34rem] bg-white text-left text-sm">
-              <caption className="bg-juta px-4 py-3 text-left font-bold">
-                Tabela comercial — {linha.nome}
-              </caption>
-              <thead className="bg-ink text-white">
-                <tr>
-                  <th scope="col" className="px-4 py-3">Produto</th>
-                  <th scope="col" className="px-4 py-3">Sabor</th>
-                  <th scope="col" className="px-4 py-3">Gramatura</th>
-                  <th scope="col" className="px-4 py-3">Un/cx</th>
-                  <th scope="col" className="px-4 py-3">Canal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {itens.map((p) => (
-                  <tr key={p.id} className="border-t border-black/5 odd:bg-offwhite/60">
-                    <th scope="row" className="px-4 py-3 font-semibold">{p.nome}</th>
-                    <td className="px-4 py-3">{p.sabor}</td>
-                    <td className="px-4 py-3">{p.gramatura}</td>
-                    <td className="px-4 py-3">{p.unidadesPorCaixa ?? "Consulte-nos"}</td>
-                    <td className="px-4 py-3">{canal(p)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Container>
-      </section>
-
-      <section
-        aria-labelledby="cotacao-title"
-        className="juta py-14 sm:py-20"
-        style={{ backgroundColor: linha.cor.bg, color: linha.cor.ink }}
-      >
-        <Container className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+    <>
+      <section style={{ background: l.cor, color: l.tinta }} className="relative overflow-hidden border-b-[3px] border-ink">
+        <span className="wordmark-bg hidden lg:block" aria-hidden="true">{l.curto}</span>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-10 sm:px-6 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <h2 id="cotacao-title" className={`text-4xl ${titleFont}`}>
-              Quer {linha.titulo} no seu negócio?
-            </h2>
-            <p className="mt-2 text-lg opacity-90">Peça uma cotação com as quantidades que você precisa.</p>
+            <nav aria-label="Trilha" className="text-sm font-bold opacity-80">
+              <Link href="/produtos" className="underline">Produtos</Link> / {l.curto}
+            </nav>
+            <h1 className="mt-3 font-display text-[clamp(3rem,10vw,6.5rem)] uppercase leading-[0.88]">{l.nome}</h1>
+            <p className="mt-4 font-script text-[clamp(1.5rem,3.4vw,2.2rem)]" style={{ color: l.destaque }}>{l.slogan}</p>
+            <p className="mt-4 max-w-md text-lg opacity-90">{l.descricao}</p>
           </div>
-          <Link
-            href={`/revenda?interesse=${linha.slug}#formulario`}
-            className="inline-flex min-h-12 items-center justify-center rounded-full px-7 py-3 font-bold transition hover:brightness-95"
-            style={{ backgroundColor: linha.cor.ink, color: linha.cor.bg }}
-          >
-            Solicitar cotação
-          </Link>
-        </Container>
+          <div className="flex h-64 items-end justify-center sm:h-80">
+            {fan.map((p, k) => (
+              <div key={p.id} className="-mx-3 h-full first:ml-0 last:mr-0" style={{ transform: `rotate(${(k - (fan.length - 1) / 2) * 5}deg) translateY(${Math.abs(k - (fan.length - 1) / 2) * 8}px)` }}>
+                <Pack p={p} priority={k === 0} sizes="180px" />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <nav aria-label="Outras linhas" className="bg-offwhite py-12">
-        <Container>
-          <h2 className="font-condensed text-2xl uppercase">Outras linhas</h2>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {linhas
-              .filter((l) => l.slug !== linha.slug)
-              .map((l) => (
-                <ButtonLink key={l.slug} href={`/produtos/${l.slug}`} variant="outline">
-                  {l.nome}
-                </ButtonLink>
-              ))}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6" aria-labelledby="t-itens">
+        <h2 id="t-itens" className="font-display text-[clamp(2rem,5vw,3.2rem)] uppercase leading-none">Itens e embalagens</h2>
+        {grupos(itens).map(([k, ps]) => (
+          <div key={k} className="mt-10">
+            <h3 className="font-display text-2xl uppercase">{k}</h3>
+            <p className="border-b-[3px] pb-2 text-sm font-bold text-muted" style={{ borderColor: l.cor }}>
+              {ps[0].gramatura}g · {ps[0].caixa ? `caixa com ${ps[0].caixa} unidades` : "unidades por caixa: consulte-nos"} · {canalTexto(ps[0].canal)}
+            </p>
+            <ul className="mt-6 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+              {ps.map((p) => <li key={p.id}><ProductCard p={p} /></li>)}
+            </ul>
           </div>
-        </Container>
-      </nav>
+        ))}
+      </section>
 
-      <JsonLd data={jsonLd} />
-    </div>
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6" aria-labelledby="t-tabela">
+        <h2 id="t-tabela" className="font-display text-3xl uppercase">Tabela comercial: {l.nome}</h2>
+        <div className="card-cat mt-5 overflow-x-auto" tabIndex={0} role="region" aria-labelledby="t-tabela">
+          <table className="w-full min-w-[560px] border-collapse text-left">
+            <thead className="bg-ink text-white">
+              <tr>{["Produto", "Sabor", "Gramatura", "Un/cx", "Canal"].map((h) => <th key={h} scope="col" className="px-4 py-3 font-extrabold">{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {itens.map((p) => (
+                <tr key={p.id} className="border-t-2 border-ink/10">
+                  <td className="px-4 py-2.5">{p.embalagem.startsWith("Pouch") ? `${l.curto} Pouch` : l.curto}</td>
+                  <td className="px-4 py-2.5 font-bold">{p.sabor}</td>
+                  <td className="px-4 py-2.5">{p.gramatura}g</td>
+                  <td className="px-4 py-2.5">{p.caixa ?? "Consulte-nos"}</td>
+                  <td className="px-4 py-2.5">{canalTexto(p.canal)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <CtaBand titulo={`Quer ${l.curto} no seu negócio?`} cor={l.cor} tinta={l.tinta} mensagem={`Olá! Vim pelo site da Aliança e quero cotar ${l.nome}.`} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+    </>
   );
 }

@@ -1,116 +1,86 @@
 @import "tailwindcss";
 
-/* -------------------------------------------------------------------------- */
-/*  Tokens de marca Aliança                                                    */
-/* -------------------------------------------------------------------------- */
 :root {
-  --alianca-red: #c8102e;
-  --alianca-red-deep: #9e0b22;
-  --alianca-gold: #c9a24b;
-  --alianca-gold-deep: #8a6420;
-  /* dourado claro: uso em TEXTO sobre vermelho (contraste AA p/ texto grande) */
-  --alianca-gold-light: #f3d98b;
-  --alianca-navy: #1b2a5c;
-  --alianca-green: #1f4d36;
-  --alianca-blue: #2e6da4;
-  --alianca-graphite: #1e1b1c;
-  --alianca-juta: #f3e9d2;
-  --alianca-offwhite: #fbf7ee;
-  --alianca-ink: #1a1414;
+  --red: #c8102e;
+  --red-deep: #a8121c;
+  --gold: #e2b657;
+  --yellow: #f5c518;
+  --mustard: #d9a62b;
+  --navy: #1b2a6b;
+  --ink: #141010;
+  --cream: #f6f1e7;
+  --paper: #fffdf8;
+  --muted: #5b5048;
+  --line: #141010;
 
-  /* tema ativo — sobrescrito por seção/página (regra "cor da embalagem = tema") */
-  --theme: var(--alianca-red);
-  --theme-ink: #ffffff;
-  --theme-accent: var(--alianca-gold);
-
-  --juta-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M0 3h12M0 9h12' stroke='%23000' stroke-opacity='.10' stroke-width='2'/%3E%3Cpath d='M3 0v12M9 0v12' stroke='%23fff' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E");
+  /* tema da seção ativa (cor da embalagem vira página) */
+  --t-bg: var(--red);
+  --t-ink: #ffffff;
+  --t-acc: var(--yellow);
+  --t-acc-ink: #1b1405;
 }
 
 @theme inline {
-  --color-red: var(--alianca-red);
-  --color-red-deep: var(--alianca-red-deep);
-  --color-gold: var(--alianca-gold);
-  --color-gold-deep: var(--alianca-gold-deep);
-  --color-gold-light: var(--alianca-gold-light);
-  --color-navy: var(--alianca-navy);
-  --color-green: var(--alianca-green);
-  --color-blue: var(--alianca-blue);
-  --color-graphite: var(--alianca-graphite);
-  --color-juta: var(--alianca-juta);
-  --color-offwhite: var(--alianca-offwhite);
-  --color-ink: var(--alianca-ink);
-  --color-theme: var(--theme);
-  --color-theme-ink: var(--theme-ink);
-  --color-theme-accent: var(--theme-accent);
+  --color-red: var(--red);
+  --color-red-deep: var(--red-deep);
+  --color-gold: var(--gold);
+  --color-yellow: var(--yellow);
+  --color-mustard: var(--mustard);
+  --color-navy: var(--navy);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --color-t-bg: var(--t-bg);
+  --color-t-ink: var(--t-ink);
+  --color-t-acc: var(--t-acc);
+  --color-t-acc-ink: var(--t-acc-ink);
 
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-dm-serif), Georgia, serif;
-  --font-condensed: var(--font-anton), Impact, "Arial Narrow", sans-serif;
-  --font-script: var(--font-pacifico), cursive;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --font-script: var(--font-script-face), cursive;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; }
 body {
-  background: var(--alianca-offwhite);
-  color: var(--alianca-ink);
+  background: var(--cream);
+  color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Foco visível e consistente */
-:focus-visible {
-  outline: 3px solid var(--alianca-gold);
-  outline-offset: 3px;
-  border-radius: 4px;
+/* card do catálogo: branco, contorno preto grosso, sombra deslocada */
+.card-cat {
+  background: #fff;
+  border: 3px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 6px 6px 0 rgba(20, 16, 16, 0.85);
 }
-.focus-dark :focus-visible,
-.focus-dark:focus-visible {
-  outline-color: var(--alianca-ink);
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  border-radius: 999px; padding: .85rem 1.4rem; font-weight: 800; line-height: 1.1;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .2s;
+  text-align: center;
+}
+.btn:active { transform: translateY(1px); }
+.btn-solid { background: var(--ink); color: #fff; }
+.btn-solid:hover { background: #000; }
+.btn-white { background: #fff; color: var(--ink); border: 3px solid var(--ink); }
+.btn-acc { background: var(--t-acc); color: var(--t-acc-ink); }
+.btn-ghost { border: 2px solid currentColor; }
+
+/* faixa diagonal com o nome da linha, como no catálogo */
+.wordmark-bg {
+  position: absolute; right: -2rem; top: 0; bottom: 0; writing-mode: vertical-rl;
+  font-family: var(--font-display); text-transform: uppercase; font-size: clamp(6rem, 16vw, 12rem);
+  line-height: .8; opacity: .08; pointer-events: none; user-select: none;
 }
 
-.juta {
-  background-image: var(--juta-texture);
-}
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; box-shadow: 0 0 0 6px var(--ink); border-radius: 6px; }
 
-.themed {
-  background-color: var(--theme);
-  color: var(--theme-ink);
-  transition:
-    background-color 0.6s ease,
-    color 0.6s ease;
-}
-
-.text-vertical {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-}
-
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: -4rem;
-  z-index: 100;
-  background: var(--alianca-ink);
-  color: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-}
-.skip-link:focus {
-  top: 1rem;
-}
+.skip-link { position: absolute; left: -9999px; top: 0; }
+.skip-link:focus { left: 1rem; top: 1rem; z-index: 100; background: #fff; color: var(--ink); padding: .6rem 1rem; border-radius: 8px; }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

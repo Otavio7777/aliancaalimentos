@@ -1,40 +1,29 @@
-/**
- * Dados institucionais. Tudo marcado com [PREENCHER] precisa ser confirmado
- * pela Aliança Alimentos antes de ir ao ar — ver docs/pendencias.md.
- */
-
-export const PREENCHER = "[PREENCHER]";
-
 function siteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   return "http://localhost:3000";
 }
 
+/** Número comercial informado pela Aliança (WhatsApp). */
+export const WHATSAPP = "5531999915082";
+export const WHATSAPP_LEGIVEL = "(31) 99991-5082";
+export const MSG_PADRAO = "Olá, estou entrando em contato pelo site da Aliança!";
+
+export function linkWhatsApp(texto: string = MSG_PADRAO) {
+  return `https://api.whatsapp.com/send/?phone=${WHATSAPP}&text=${encodeURIComponent(texto)}&type=phone_number&app_absent=0`;
+}
+
 export const site = {
   nome: "Aliança Alimentos",
+  slogan: "Sabor que transforma o momento.",
   descricao:
-    "Fabricante de batata palha e snacks. Batata Palha Aliança, Batata Chips Lisa, Batata Ondulada Krisp's e Salgadinho de Trigo Checkmate para varejo, atacado e food service.",
+    "Batata palha, batata chips e snacks Aliança para varejo, atacado e food service: Batata Palha, Batata Chips Lisa, Krisp's e Checkmate.",
   url: siteUrl(),
-  razaoSocial: `${PREENCHER} razão social`,
-  cnpj: `${PREENCHER} CNPJ`,
-  endereco: `${PREENCHER} endereço completo`,
-  cidadeUf: `${PREENCHER} cidade/UF`,
-  telefone: `${PREENCHER} telefone`,
-  whatsapp: `${PREENCHER} WhatsApp`,
-  email: `${PREENCHER} e-mail comercial`,
-  emailPrivacidade: `${PREENCHER} e-mail do encarregado (LGPD)`,
-  horario: `${PREENCHER} horário de atendimento`,
-  redes: {
-    instagram: null as string | null,
-    facebook: null as string | null,
-    linkedin: null as string | null,
-  },
 };
 
 export const nav = [
   { href: "/produtos", label: "Produtos" },
-  { href: "/produtos/food-service", label: "Food Service" },
+  { href: "/food-service", label: "Food Service" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];
@@ -45,11 +34,11 @@ export const ufs = [
 ];
 
 export const tiposNegocio = [
-  "Supermercado / varejo",
-  "Atacadista / distribuidor",
-  "Restaurante / lanchonete",
-  "Padaria / confeitaria",
-  "Delivery / dark kitchen",
+  "Supermercado ou mercearia",
+  "Atacado ou distribuidor",
+  "Restaurante ou lanchonete",
+  "Padaria ou confeitaria",
+  "Delivery",
   "Representante comercial",
   "Outro",
 ];

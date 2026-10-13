@@ -1,23 +1,11 @@
 import type { MetadataRoute } from "next";
-import { linhas, produtosDaLinha } from "@/data/products";
+import { linhas } from "@/data/catalogo";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const rotas = ["", "/produtos", "/sobre", "/revenda", "/contato", "/privacidade", "/termos"];
-  const now = new Date();
+  const fixas = ["", "/produtos", "/food-service", "/cotacao", "/sobre", "/contato", "/privacidade", "/termos"];
   return [
-    ...rotas.map((r) => ({
-      url: `${site.url}${r}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: r === "" ? 1 : r === "/produtos" || r === "/revenda" ? 0.9 : 0.5,
-    })),
-    ...linhas.map((l) => ({
-      url: `${site.url}/produtos/${l.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-      images: produtosDaLinha(l.slug).flatMap((p) => (p.imagem ? [`${site.url}${p.imagem}`] : [])),
-    })),
+    ...fixas.map((p) => ({ url: `${site.url}${p}`, lastModified: new Date() })),
+    ...linhas.filter((l) => l.slug !== "food-service").map((l) => ({ url: `${site.url}/produtos/${l.slug}`, lastModified: new Date() })),
   ];
 }

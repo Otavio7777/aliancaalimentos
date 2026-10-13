@@ -1,32 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
-/** Proporção do arquivo oficial recortado (public/brand/logo-alianca-header.webp, 400x180). */
-const W = 400;
-const H = 180;
-
-/**
- * Logo oficial da Aliança Alimentos (lote 1B). Usar sobre fundo claro, creme ou
- * escuro neutro; nunca recolorir, distorcer, girar ou aplicar sombra.
- * `className` define a altura (ex.: "h-11 w-auto"); `sizes` deve refletir a largura exibida.
- */
-export function Logo({
-  className = "",
-  priority = false,
-  sizes = "125px",
-}: {
-  className?: string;
-  priority?: boolean;
-  sizes?: string;
-}) {
+export function Logo({ className = "h-11 w-auto", priority = false }: { className?: string; priority?: boolean }) {
   return (
-    <Image
-      src="/brand/logo-alianca-header.webp"
-      alt="Aliança Alimentos"
-      width={W}
-      height={H}
-      priority={priority}
-      sizes={sizes}
-      className={className}
-    />
+    <Link href="/" aria-label="Aliança Alimentos, página inicial" className="inline-flex shrink-0">
+      <Image src="/brand/logo.webp" alt="Aliança Alimentos" width={480} height={205} priority={priority} className={className} />
+    </Link>
   );
 }

@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "images": "python3 scripts/extract_catalog.py",
-    "images:lote": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/process-images.ts",
-    "images:logo": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/process-logo.ts"
+    "typecheck": "tsc --noEmit"
   },
   "engines": {
     "node": ">=20"

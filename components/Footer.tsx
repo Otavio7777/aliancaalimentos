@@ -1,82 +1,48 @@
 import Link from "next/link";
+import { linhas } from "@/data/catalogo";
+import { linkWhatsApp, site, WHATSAPP_LEGIVEL } from "@/lib/site";
 import { Logo } from "./Logo";
-import { linhas } from "@/data/products";
-import { site } from "@/lib/site";
 
 export function Footer() {
-  const ano = new Date().getFullYear();
   return (
-    <footer className="bg-graphite text-white">
-      <div className="h-2 bg-gold" aria-hidden="true" />
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+    <footer className="border-t-[3px] border-ink bg-ink text-white">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          {/* placa creme: o ® da logo é preto e sumiria sobre o grafite */}
-          <Link href="/" className="inline-block rounded-2xl bg-offwhite px-4 py-3">
-            <Logo className="h-14 w-auto" sizes="125px" />
-            <span className="sr-only">, página inicial</span>
-          </Link>
-          <p className="mt-4 max-w-xs text-sm text-white/75">
-            Batata palha e snacks para o varejo, o atacado e o food service.
+          <span className="inline-block rounded-2xl bg-paper px-3 py-2">
+            <Logo className="h-12 w-auto" />
+          </span>
+          <p className="mt-4 font-script text-2xl text-yellow">{site.slogan}</p>
+          <p className="mt-3 max-w-sm text-sm text-white/75">
+            Batata palha, batata chips e snacks para varejo, atacado e food service.
           </p>
         </div>
-
-        <nav aria-label="Produtos no rodapé">
-          <h2 className="font-condensed text-lg tracking-wide text-gold">PRODUTOS</h2>
-          <ul className="mt-4 space-y-2 text-sm">
+        <div>
+          <h2 className="font-display text-xl uppercase">Linhas</h2>
+          <ul className="mt-3 space-y-2 text-sm">
             {linhas.map((l) => (
               <li key={l.slug}>
-                <Link href={`/produtos/${l.slug}`} className="text-white/85 hover:text-white hover:underline">
+                <Link className="hover:underline" href={l.slug === "food-service" ? "/food-service" : `/produtos/${l.slug}`}>
                   {l.nome}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/produtos" className="text-white/85 hover:text-white hover:underline">
-                Catálogo completo
-              </Link>
-            </li>
           </ul>
-        </nav>
-
-        <nav aria-label="Institucional">
-          <h2 className="font-condensed text-lg tracking-wide text-gold">ALIANÇA</h2>
-          <ul className="mt-4 space-y-2 text-sm">
-            {[
-              ["/sobre", "Sobre a Aliança"],
-              ["/revenda", "Seja um revendedor"],
-              ["/revenda#food-service", "Food Service"],
-              ["/contato", "Contato"],
-              ["/privacidade", "Política de Privacidade"],
-              ["/termos", "Termos de Uso"],
-            ].map(([href, label]) => (
-              <li key={href}>
-                <Link href={href} className="text-white/85 hover:text-white hover:underline">
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
+        </div>
         <div>
-          <h2 className="font-condensed text-lg tracking-wide text-gold">FALE COM A GENTE</h2>
-          <address className="mt-4 space-y-2 text-sm not-italic text-white/85">
-            <p>{site.endereco}</p>
-            <p>{site.cidadeUf}</p>
-            <p>Telefone: {site.telefone}</p>
-            <p>WhatsApp: {site.whatsapp}</p>
-            <p>E-mail: {site.email}</p>
-          </address>
+          <h2 className="font-display text-xl uppercase">Fale com o comercial</h2>
+          <a href={linkWhatsApp()} target="_blank" rel="noopener" className="btn mt-4 bg-yellow text-ink">
+            WhatsApp {WHATSAPP_LEGIVEL}
+          </a>
+          <ul className="mt-5 space-y-2 text-sm text-white/75">
+            <li><Link className="hover:underline" href="/cotacao">Montar cotação</Link></li>
+            <li><Link className="hover:underline" href="/privacidade">Política de Privacidade</Link></li>
+            <li><Link className="hover:underline" href="/termos">Termos de Uso</Link></li>
+          </ul>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs text-white/70 sm:flex-row sm:justify-between sm:px-6 lg:px-8">
-          <p>
-            © {ano} {site.nome} · {site.razaoSocial} · {site.cnpj}
-          </p>
-          <p>Imagens meramente ilustrativas.</p>
-        </div>
-      </div>
+      <p className="border-t border-white/15 px-4 py-4 text-center text-xs text-white/60">
+        © {new Date().getFullYear()} {site.nome}. Imagens ilustrativas.
+      </p>
     </footer>
   );
 }

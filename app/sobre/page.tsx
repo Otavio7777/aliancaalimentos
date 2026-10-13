@@ -1,92 +1,51 @@
 import type { Metadata } from "next";
-import { PackShot } from "@/components/PackShot";
-import { Reveal } from "@/components/Reveal";
-import { ButtonLink, Container, Eyebrow, PageHero, Placeholder } from "@/components/ui";
-import { linhas, produtos } from "@/data/products";
+import Link from "next/link";
+import { CtaBand } from "@/components/CtaBand";
+import { linhas, produtos, gramaturas } from "@/data/catalogo";
 
 export const metadata: Metadata = {
   title: "Sobre a Aliança",
-  description: "Conheça a Aliança Alimentos, fabricante de batata palha e snacks para varejo, atacado e food service.",
+  description: "Aliança Alimentos: batata palha, batata chips e snacks para varejo, atacado e food service.",
   alternates: { canonical: "/sobre" },
 };
-
-const pilares = [
-  { t: "Crocância", d: "É o que a gente persegue em cada lote: fio sequinho e crocante do pacote ao prato." },
-  { t: "Variedade", d: "Da batata palha clássica aos snacks de sabor marcante, com opções para cada canal." },
-  { t: "Parceria", d: "Relação próxima com quem revende, distribui e cozinha com os nossos produtos." },
-];
 
 export default function SobrePage() {
   return (
     <>
-      <PageHero eyebrow="Sobre a Aliança" title={<>Feita para dar <span className="font-script text-gold-light">crocância</span> ao dia a dia.</>}>
-        <p>A Aliança Alimentos fabrica batata palha e snacks para o varejo, o atacado e o food service.</p>
-      </PageHero>
-
-      <section aria-labelledby="historia-title" className="py-14 sm:py-20">
-        <Container className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <Eyebrow className="text-red">Nossa história</Eyebrow>
-            <h2 id="historia-title" className="mt-2 font-serif text-4xl">De onde viemos</h2>
-            <div className="mt-6 space-y-4 text-lg text-ink/85">
-              <p>
-                <Placeholder>[PREENCHER]</Placeholder> História da empresa: ano de fundação, cidade de origem, fundadores e
-                marcos importantes.
-              </p>
-              <p>
-                <Placeholder>[PREENCHER]</Placeholder> Estrutura fabril: localização da fábrica, capacidade e processos que a
-                Aliança queira destacar.
-              </p>
-              <p>
-                <Placeholder>[PREENCHER]</Placeholder> Certificações e registros (apenas os que a empresa possui e pode comprovar).
-              </p>
-            </div>
-          </div>
-          <div className="juta flex items-end justify-center gap-3 rounded-[2rem] bg-red p-8">
-            {["bp-tradicional-80g", "bp-extrafina-100g", "bp-zero-sodio-100g"].map((id, i) => (
-              <div key={id} className={i === 1 ? "w-[40%]" : "w-[30%]"}>
-                <PackShot produto={produtos.find((p) => p.id === id)!} sizes="20vw" />
-              </div>
-            ))}
-          </div>
-        </Container>
+      <section className="border-b-[3px] border-ink bg-red text-white">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <h1 className="font-display text-[clamp(3rem,9vw,6rem)] uppercase leading-[0.9]">Sobre a Aliança</h1>
+          <p className="mt-3 font-script text-[clamp(1.6rem,3.4vw,2.4rem)] text-yellow">Sabor que transforma o momento.</p>
+        </div>
       </section>
-
-      <section aria-labelledby="pilares-title" data-theme="#1E1B1C" className="bg-graphite py-14 text-white sm:py-20">
-        <Container>
-          <Eyebrow className="text-gold">No que acreditamos</Eyebrow>
-          <h2 id="pilares-title" className="mt-2 font-serif text-4xl">Nossos pilares</h2>
-          <ul className="mt-10 grid gap-4 md:grid-cols-3">
-            {pilares.map((p, i) => (
-              <Reveal as="li" key={p.t} delay={i * 0.06} className="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
-                <h3 className="font-condensed text-3xl uppercase text-gold">{p.t}</h3>
-                <p className="mt-2 text-white/80">{p.d}</p>
-              </Reveal>
-            ))}
-          </ul>
-          <p className="mt-8 text-sm text-white/70">
-            Missão, visão e valores oficiais: <Placeholder>[PREENCHER]</Placeholder>
+      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.2fr_1fr]">
+        <div className="space-y-4 text-lg">
+          <p>
+            A Aliança Alimentos produz batata palha, batata chips e snacks com as marcas Aliança, Krisp&apos;s e Checkmate.
           </p>
-        </Container>
+          <p>
+            O portfólio atende do pequeno varejo ao atacado e à cozinha profissional: embalagens de 80g, pouch de 100g e
+            tamanho família de 300g na gôndola, e pacote de 800g e sachê individual de 12g para food service.
+          </p>
+          <p>
+            Todos os produtos são vendidos em caixas fechadas. Para cotar, monte sua lista no{" "}
+            <Link href="/produtos" className="font-bold underline">catálogo</Link> e envie ao comercial.
+          </p>
+        </div>
+        <dl className="grid grid-cols-3 gap-3 self-start">
+          {[
+            [String(linhas.length), "linhas"],
+            [String(produtos.length), "produtos"],
+            [String(gramaturas.length), "pesos"],
+          ].map(([n, t]) => (
+            <div key={t} className="card-cat p-4 text-center">
+              <dd className="font-display text-5xl">{n}</dd>
+              <dt className="font-bold text-muted">{t}</dt>
+            </div>
+          ))}
+        </dl>
       </section>
-
-      <section aria-labelledby="marcas-title" className="py-14 sm:py-20">
-        <Container>
-          <h2 id="marcas-title" className="font-serif text-4xl">Nossas marcas</h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {linhas.map((l) => (
-              <li key={l.slug} className="rounded-3xl p-6" style={{ backgroundColor: l.cor.bg, color: l.cor.ink }}>
-                <h3 className={`text-3xl ${l.fonteTitulo === "serif" ? "font-serif" : "font-condensed uppercase"}`}>{l.titulo}</h3>
-                <p className="mt-2 text-sm opacity-90">{l.descricao}</p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/produtos">Ver produtos</ButtonLink>
-            <ButtonLink href="/revenda" variant="outline">Seja um revendedor</ButtonLink>
-          </div>
-        </Container>
-      </section>
+      <CtaBand titulo="Quer Aliança no seu negócio?" cor="#141010" />
     </>
   );
 }
